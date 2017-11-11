@@ -1,0 +1,6 @@
+version: "Apple Swift version 4.0.2 (swiftlang-900.0.69.2 clang-900.0.38)"
+options: "7869d9461f8a4df9469974a9524fd85c"
+build_time: [1510344184, 167610000]
+inputs:
+  "/Users/laurin/Documents/School/fbxpollenfallen/fbxpollenfallen/ViewController.swift": [1510344061, 0]
+  "/Users/laurin/Documents/School/fbxpollenfallen/fbxpollenfallen/AppDelegate.swift": [1510344061, 0]
