@@ -11,10 +11,20 @@ import Charts
 
 class ViewController: UIViewController, ChartViewDelegate {
 
+
+    @IBOutlet weak var yAxisView: UIView!
+    @IBOutlet weak var yAxisLabel: UILabel!
+    @IBOutlet weak var lineChartVerticalStackView: UIStackView!
+    @IBOutlet weak var GraphLabel: UILabel!
+    @IBOutlet weak var xAxisLabel: UILabel!
     @IBOutlet weak var lineChart: LineChartView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        yAxisLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
+       // yAxisLabel.bounds.width = yAxisView.bounds.height
+        //yAxisView.frame.size.width = 10
         
         self.lineChart.delegate = self
         self.lineChart.chartDescription?.text = "Tap node for details"
@@ -23,10 +33,14 @@ class ViewController: UIViewController, ChartViewDelegate {
         self.lineChart.noDataText = "no data provided"
         
         //fake data
-        var x = [0, 1, 2, 3, 4, 5];
-        var y = [20, 30, 50, 22, 30];
+        let x = [0, 1, 2, 3, 4, 5];
+        let y = [20, 30, 50, 22, 30];
         
         makeChart(x: x, y: y)
+        
+        //have horizontal stack view w/ chart & y_axis label fill screen
+       // lineChartVerticalStackView.axis = .vertical
+        lineChartVerticalStackView.distribution = .fill
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +69,12 @@ class ViewController: UIViewController, ChartViewDelegate {
         data.addDataSet(dataSet)
         data.addDataSet(dataSet2)
         
+        let months = [" ", "Jan", "Feb", "Mar", "Apr", "May"]
+        lineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: months)
+        lineChart.xAxis.granularity = 1
+        lineChart.xAxis.avoidFirstLastClippingEnabled = true
+        lineChart.xAxis.labelPosition = .bottom
+       // lineChart.xAxis.setLabelCount(5, force: true)
         lineChart.data = data
     }
 
