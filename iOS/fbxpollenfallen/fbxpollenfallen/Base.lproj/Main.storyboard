@@ -35,32 +35,16 @@
                                         <rect key="frame" x="0.0" y="30" width="375" height="598"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vuy-L3-W1r">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="598"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pollen Intensity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndy-rM-6zo">
-                                                        <rect key="frame" x="0.0" y="256" width="116" height="19"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="19" id="lqg-e3-0HJ"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
+                                                <rect key="frame" x="0.0" y="0.0" width="25" height="598"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="ndy-rM-6zo" firstAttribute="top" secondItem="Vuy-L3-W1r" secondAttribute="top" constant="256" id="DZW-Lw-cLf"/>
-                                                    <constraint firstItem="ndy-rM-6zo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vuy-L3-W1r" secondAttribute="leading" id="PhQ-Gt-Qka"/>
-                                                    <constraint firstAttribute="trailing" secondItem="ndy-rM-6zo" secondAttribute="trailing" constant="-66" id="Pm0-Hp-BXZ"/>
-                                                </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J7I-4H-SuQ" customClass="LineChartView" customModule="Charts">
-                                                <rect key="frame" x="50" y="0.0" width="325" height="598"/>
+                                                <rect key="frame" x="25" y="0.0" width="350" height="598"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="J7I-4H-SuQ" firstAttribute="leading" secondItem="qxF-zP-9hd" secondAttribute="leading" constant="50" id="b1O-eo-zhk"/>
+                                            <constraint firstItem="J7I-4H-SuQ" firstAttribute="leading" secondItem="qxF-zP-9hd" secondAttribute="leading" constant="25" id="b1O-eo-zhk"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -82,7 +66,6 @@
                         <outlet property="GraphLabel" destination="jZR-JT-GF7" id="fuw-MI-H1J"/>
                         <outlet property="lineChart" destination="J7I-4H-SuQ" id="PIv-Mw-R7w"/>
                         <outlet property="lineChartVerticalStackView" destination="qxF-zP-9hd" id="fKB-pc-0eO"/>
-                        <outlet property="yAxisLabel" destination="ndy-rM-6zo" id="XZ1-K6-uKE"/>
                         <outlet property="yAxisView" destination="Vuy-L3-W1r" id="POh-tb-0z8"/>
                     </connections>
                 </viewController>
