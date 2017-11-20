@@ -8,37 +8,35 @@
 
 import UIKit
 
-class EditViewController: UIViewController {
+class EditViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var yearPicker: UIPickerView!
     @IBOutlet var switches: [UISwitch]!
+    @IBOutlet var editView: UIView!
     var pollenSources = ["Birch", "Spruce", "Poplar Aspen", "Willow", "Alder", "Other Tree", "Other Tree 2", "Weed", "Mold", "Grass", "Grass 2", "Other", "Other 2"]
+    var years = ["2017", "2016", "2015", "2014", "2013"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //draw switches and pollen source labels to the screen
-        
+     
     }
-
+    
+    //MARK: UIPicker Required functions
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return years.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return years[row] as String
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    //MARK: Populating Switches
-    func populateSwitches(){
-        
-        //Make a new Switch
-        let newSwitch = UISwitch(frame: CGRect(x: 8, y: 20, width: 0, height: 0))
-        newSwitch.isOn = true
-        newSwitch.setOn(true, animated: false)
-        newSwitch.addTarget(self, action: Selector(("switchValueDidChange:")), for: UIControlEvents.valueChanged)
-
-    }
-    
-    func switchValueDidChange(_ sender: UISwitch){
-        
     }
 
     /*
