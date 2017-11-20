@@ -13,6 +13,7 @@
 		49B99FE31FB63CFD0037D4FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B99FE21FB63CFD0037D4FF /* Assets.xcassets */; };
 		49B99FE61FB63CFE0037D4FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B99FE41FB63CFE0037D4FF /* LaunchScreen.storyboard */; };
 		49B99FF11FB63CFE0037D4FF /* fbxpollenfallenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B99FF01FB63CFE0037D4FF /* fbxpollenfallenTests.swift */; };
+		49B9A0081FC1F3970037D4FF /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B9A0071FC1F3970037D4FF /* EditViewController.swift */; };
 		4F0EF832AA561F08EB658428 /* Pods_fbxpollenfallen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496003B1F9A15CD39B78C9C1 /* Pods_fbxpollenfallen.framework */; };
 		BE4B9AFC5953F0120C2B3D03 /* Pods_fbxpollenfallenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF7B8FECED15EAF8C4E1ADE9 /* Pods_fbxpollenfallenTests.framework */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,7 @@
 		49B99FEC1FB63CFE0037D4FF /* fbxpollenfallenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fbxpollenfallenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B99FF01FB63CFE0037D4FF /* fbxpollenfallenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fbxpollenfallenTests.swift; sourceTree = "<group>"; };
 		49B99FF21FB63CFE0037D4FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49B9A0071FC1F3970037D4FF /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		5E155B456A1BD84DF9CDA594 /* Pods-fbxpollenfallen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fbxpollenfallen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fbxpollenfallen/Pods-fbxpollenfallen.debug.xcconfig"; sourceTree = "<group>"; };
 		91999BDD072E386ECA41AE3A /* Pods-fbxpollenfallenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fbxpollenfallenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-fbxpollenfallenTests/Pods-fbxpollenfallenTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A25E4869FABF4B79B431E4DB /* Pods-fbxpollenfallen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fbxpollenfallen.release.xcconfig"; path = "Pods/Target Support Files/Pods-fbxpollenfallen/Pods-fbxpollenfallen.release.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				49B99FDB1FB63CFD0037D4FF /* AppDelegate.swift */,
 				49B99FDD1FB63CFD0037D4FF /* ViewController.swift */,
+				49B9A0071FC1F3970037D4FF /* EditViewController.swift */,
 				49B99FDF1FB63CFD0037D4FF /* Main.storyboard */,
 				49B99FE21FB63CFD0037D4FF /* Assets.xcassets */,
 				49B99FE41FB63CFE0037D4FF /* LaunchScreen.storyboard */,
@@ -341,6 +344,7 @@
 			files = (
 				49B99FDE1FB63CFD0037D4FF /* ViewController.swift in Sources */,
 				49B99FDC1FB63CFD0037D4FF /* AppDelegate.swift in Sources */,
+				49B9A0081FC1F3970037D4FF /* EditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
