@@ -4,3 +4,8 @@
 //11-22-17
 
 iOS Basics:
+
+
+Comments beginning with: 
+//MARK: 
+Are able to be "warped to" later on through Xcode, making finding code in your file easier. 

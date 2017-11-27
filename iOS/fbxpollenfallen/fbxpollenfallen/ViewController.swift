@@ -26,10 +26,12 @@ class ViewController: UIViewController, ChartViewDelegate {
         //Create y_axis label
         var label = UILabel(frame: CGRect(x: yAxisView.bounds.width/4, y: screen.size.height/2, width: 100, height: 100))
         label.text = "Pollen Intensity"
+        label.sizeToFit()
         //Rotate the label -90 deg
         label.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
         //Make the new boundaries for the label to be visible in the view
         label.frame = CGRect(x: yAxisView.bounds.width/8, y: 0, width: 20, height: yAxisView.bounds.height/2)
+        label.sizeToFit() 
         yAxisView.addSubview(label) //add the new label to the view
         
         //Initialize the Chart

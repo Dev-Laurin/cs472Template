@@ -87,16 +87,28 @@
                     <view key="view" contentMode="scaleToFill" id="WTZ-2l-de4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ufh-eH-rPW">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ufh-eH-rPW" firstAttribute="top" secondItem="vxU-Qh-xl3" secondAttribute="top" id="0pd-JH-R1Y"/>
+                            <constraint firstItem="ufh-eH-rPW" firstAttribute="bottom" secondItem="vxU-Qh-xl3" secondAttribute="bottom" id="5tr-H0-cf9"/>
+                            <constraint firstItem="ufh-eH-rPW" firstAttribute="trailing" secondItem="vxU-Qh-xl3" secondAttribute="trailing" id="6Iv-jj-ave"/>
+                            <constraint firstItem="ufh-eH-rPW" firstAttribute="leading" secondItem="vxU-Qh-xl3" secondAttribute="leading" id="GpA-UI-cw7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="vxU-Qh-xl3"/>
                     </view>
                     <connections>
                         <outlet property="editView" destination="WTZ-2l-de4" id="y0Y-ou-IZW"/>
+                        <outlet property="scrollView" destination="ufh-eH-rPW" id="hM5-tK-uzQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDO-6p-BqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954" y="116"/>
+            <point key="canvasLocation" x="948" y="142.57871064467767"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="29g-qM-4wi">

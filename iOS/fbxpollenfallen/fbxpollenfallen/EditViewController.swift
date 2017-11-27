@@ -8,14 +8,20 @@
 
 import UIKit
 
-class EditViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class EditViewController: UIViewController, UIScrollViewDelegate , UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet var editView: UIView! //keep this, it crashes otherwise
+    @IBOutlet weak var scrollView: UIScrollView!
     
     //MARK: Variables
     var pollenSources = ["Birch", "Spruce", "Poplar Aspen", "Willow", "Alder", "Other Tree", "Other Tree 2", "Weed", "Mold", "Grass", "Grass 2", "Other", "Other 2"]
     var years = ["2017", "2016", "2015", "2014", "2013"]
     let spacing = 8
+    
+    //Deinitializer
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     //MARK: Notification
     func setupNotification(){
@@ -31,27 +37,39 @@ class EditViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         setupNotification()
         //Draw to the View
         drawLabelsAndSwitches(labels: pollenSources)
+        
+        //Make the UIScrollView for smaller devices to fit entire content
+//        let screensize: CGRect = UIScreen.main.bounds
+//        let screenWidth = screensize.width
+//        let screenHeight = screensize.height
+//        var scrollView = UIScrollView(frame: CGRect(x: 0, y: 120, width: screenWidth, height: screenHeight))
+//        scrollView.contentSize = CGSize(width: screenWidth, height: 2000)
+//        var Switch = UISwitch(frame: CGRect(x: 150, y: 150, width: 0, height: 0))
+//        scrollView.addSubview(Switch)
+//        self.view.addSubview(scrollView)
+        //scrollView.addSubview(mySwitch)
+        //scrollView.delegate = self
     }
     
     //MARK: Draw to the Screen
     func drawLabelsAndSwitches(labels: [String]){
+        
         //find largest label to determine how many can fit on screen
         if let max = labels.max(by: {$1.count > $0.count}) {
+            //Find the size of a UISwitch
             let mySwitch = UISwitch()
             let SwitchWidth = Int(ceil(mySwitch.frame.size.width))
             let SwitchHeight = Int(ceil(mySwitch.frame.size.height))
-            //max is the largest text string
-            //maxSize is the bounding box around this largest text string
-            //let maxSize = max.boundingRect(with: (CGSize(width: 1000, height: 1000)), context: nil)
-            
-            var newLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+
+            //Calculate the size of the biggest text label
+            let newLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
             newLabel.text = max
             newLabel.sizeToFit()
             let maxWidth = Int(ceil(newLabel.bounds.size.width))
             
             //calculate width of the horizontal stack of longest
             let longestWidth = maxWidth + spacing + SwitchWidth
-            print("longestWidth: " + String(longestWidth))
+ 
             //get biggest usable width in view
             let viewWidth = self.view.frame.size.width
             
@@ -71,11 +89,11 @@ class EditViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
                 var Label = UILabel(frame: CGRect(x: xSpacing, y: 150, width: 0, height: 0))
                 Label.text = max
                 Label.sizeToFit()
-                self.view.addSubview(Label)
+                scrollView.addSubview(Label)
                 
                 //draw corresponding switch
                 var Switch = UISwitch(frame: CGRect(x: (xSpacing + longestWidth - SwitchWidth), y: 150 - (SwitchHeight/2), width: 0, height: 0))
-                self.view.addSubview(Switch)
+                scrollView.addSubview(Switch)
                 
                 //Spacing between columns
                 xSpacing+=spacing + longestWidth //Int(ceil(maxSize.width))
@@ -86,6 +104,12 @@ class EditViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     //MARK: Orientation Changes
     //Called when device is rotated, redraw based on new window width
     @objc func rotated(){
+        //remove old uiviews & clear the scrollview
+        let subViews = scrollView.subviews
+        for subview in subViews{
+            subview.removeFromSuperview()
+        }
+        
         var newOrientation = UIDevice.current.orientation
         switch newOrientation{
         case .landscapeLeft, .landscapeRight:
@@ -93,6 +117,7 @@ class EditViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
             drawLabelsAndSwitches(labels: pollenSources)
         case .portrait, .portraitUpsideDown:
             print("portrait")
+            drawLabelsAndSwitches(labels: pollenSources)
         default:
             print("other")
         }
