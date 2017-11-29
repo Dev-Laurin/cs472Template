@@ -8,16 +8,34 @@
 
 import UIKit
 
-class EditViewController: UIViewController, UIScrollViewDelegate , UIPickerViewDelegate, UIPickerViewDataSource {
+class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet var editView: UIView! //keep this, it crashes otherwise
     @IBOutlet weak var scrollView: UIScrollView!
     
     //MARK: Variables
-    var pollenSources = ["Birch", "Spruce", "Poplar Aspen", "Willow", "Alder", "Other Tree", "Other Tree 2", "Weed", "Mold", "Grass", "Grass 2", "Other", "Other 2"]
+    var pollenSources = ["Birch","Weed", "Spruce","Mold", "Poplar Aspen","Grass", "Willow","Grass 2", "Alder","Other", "Other Tree","Other 2", "Other Tree 2"]
     var years = ["2017", "2016", "2015", "2014", "2013"]
-    let spacing = 8
+    var spaces = 8
     
+    //Views
+        //pickerView
+    var yearPicker = UIPickerView()
+    //View that greys out the rest of the screen (drawn on top) for picker view
+    var greyView = UIView(frame: CGRect(x: 0, y:0, width: 0, height: 0))
+    
+    //make buttons accessible by picker
+    var firstYearButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+    var endYearButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+    
+    //keep track of which button was picked
+    var buttonClicked = UIButton()
+    
+//    //for drawing
+//    var screensize: CGRect = UIScreen.main.bounds
+//    var screenWidth = UIScreen.main.bounds.width
+//    var screenHeight = UIScreen.main.bounds.height
+//
     //Deinitializer
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -36,23 +54,25 @@ class EditViewController: UIViewController, UIScrollViewDelegate , UIPickerViewD
         //Setup "Notifications" or Observers
         setupNotification()
         //Draw to the View
-        drawLabelsAndSwitches(labels: pollenSources)
+        drawLabelsAndSwitches(labels: pollenSources, spacing: spaces)
         
-        //Make the UIScrollView for smaller devices to fit entire content
-//        let screensize: CGRect = UIScreen.main.bounds
-//        let screenWidth = screensize.width
-//        let screenHeight = screensize.height
-//        var scrollView = UIScrollView(frame: CGRect(x: 0, y: 120, width: screenWidth, height: screenHeight))
-//        scrollView.contentSize = CGSize(width: screenWidth, height: 2000)
-//        var Switch = UISwitch(frame: CGRect(x: 150, y: 150, width: 0, height: 0))
-//        scrollView.addSubview(Switch)
-//        self.view.addSubview(scrollView)
-        //scrollView.addSubview(mySwitch)
-        //scrollView.delegate = self
+        //Allowing the scrollview to scroll
+        scrollView.isScrollEnabled = true
     }
     
     //MARK: Draw to the Screen
-    func drawLabelsAndSwitches(labels: [String]){
+    private func drawLabelsAndSwitches(labels: [String], spacing: Int){
+        var screensize = UIScreen.main.bounds
+        var screenWidth = UIScreen.main.bounds.width
+        var screenHeight = UIScreen.main.bounds.height
+        
+        //Draw label
+        let pollenSourceLabel =  UILabel(frame: CGRect(x: 0 , y: spacing, width: 0, height: 0))
+        pollenSourceLabel.text = "Pollen Sources (X Axis)"
+        pollenSourceLabel.sizeToFit()
+        pollenSourceLabel.frame.origin = CGPoint(x: Int(ceil((screenWidth - pollenSourceLabel.bounds.width)/2)), y: spacing)
+        scrollView.addSubview(pollenSourceLabel)
+        var ySpacing = 0
         
         //find largest label to determine how many can fit on screen
         if let max = labels.max(by: {$1.count > $0.count}) {
@@ -75,30 +95,142 @@ class EditViewController: UIViewController, UIScrollViewDelegate , UIPickerViewD
             
             //how many of the longest item can we use across the screen
             let itemsAvailablePerViewWidth = Int(ceil(viewWidth))/longestWidth
-            print("# of items possible" + String(itemsAvailablePerViewWidth))
-//            var newLabel = UILabel(frame: CGRect(x: 50, y: 50, width: 100, height: 100))
-//            newLabel.text = String(itemsAvailablePerViewWidth)
-//
-            var ySpacing = spacing
-            var xSpacing = spacing
+
+            //Spacing between columns
+            let inBetweenSpacing = ((Int(ceil(viewWidth)) - (longestWidth * itemsAvailablePerViewWidth))/2) / itemsAvailablePerViewWidth
             
-            //draw labels and draw uiswitches
-            for _ in 0..<itemsAvailablePerViewWidth{
-                
-                //Draw pollen source text
-                var Label = UILabel(frame: CGRect(x: xSpacing, y: 150, width: 0, height: 0))
-                Label.text = max
-                Label.sizeToFit()
-                scrollView.addSubview(Label)
-                
-                //draw corresponding switch
-                var Switch = UISwitch(frame: CGRect(x: (xSpacing + longestWidth - SwitchWidth), y: 150 - (SwitchHeight/2), width: 0, height: 0))
-                scrollView.addSubview(Switch)
-                
-                //Spacing between columns
-                xSpacing+=spacing + longestWidth //Int(ceil(maxSize.width))
+            //Draw the labels & switches
+            let remainder = (pollenSources.count % itemsAvailablePerViewWidth)
+            var itemRows = (pollenSources.count / itemsAvailablePerViewWidth)
+            if remainder != 0 {
+                itemRows+=1
             }
+            var index = 0
+            ySpacing = SwitchHeight/2 + (2*spacing) + Int(ceil(pollenSourceLabel.bounds.height))
+            //Draw all rows
+            for _ in 0..<itemRows {
+               
+                var xSpacing = spacing
+                
+                //each row
+                for _ in 0..<itemsAvailablePerViewWidth{
+                    
+                    if index != pollenSources.count{
+                        //Draw pollen source text
+                        let Label = UILabel(frame: CGRect(x: xSpacing, y: ySpacing, width: 0, height: 0))
+                        Label.text = pollenSources[index]
+                        Label.sizeToFit()
+                        scrollView.addSubview(Label)
+                        
+                        //draw corresponding switch
+                        let Switch = UISwitch(frame: CGRect(x: (xSpacing  + longestWidth - SwitchWidth), y: ySpacing - (SwitchHeight/2), width: 0, height: 0))
+                        scrollView.addSubview(Switch)
+                        
+                        //Spacing between columns
+                        xSpacing+=spacing + longestWidth + inBetweenSpacing //Int(ceil(maxSize.width))
+                        index += 1
+                    }
+
+                }
+                ySpacing+=spacing + 50
+            }
+            
+            //Now draw the year picker (from _ to _)
+            //Draw Year label
+            let yearLabel =  UILabel(frame: CGRect(x: 0 , y: ySpacing, width: 0, height: 0))
+            yearLabel.text = "Year(s)"
+            yearLabel.sizeToFit()
+            let yearLabelXCenter = Int(ceil((screenWidth - yearLabel.bounds.width)/2))
+            yearLabel.frame.origin = CGPoint(x: yearLabelXCenter, y: ySpacing)
+            scrollView.addSubview(yearLabel)
+            
+            ySpacing+=spacing + Int(ceil(yearLabel.bounds.height))
+            
+            //draw buttons that open up a picker view
+            firstYearButton.backgroundColor = UIColor.lightGray
+            firstYearButton.setTitle("  First Year  ", for: .normal)
+            firstYearButton.setTitleColor(.black, for: .normal)
+            firstYearButton.layer.borderWidth = 2 
+            firstYearButton.layer.borderColor = UIColor.black.cgColor
+            firstYearButton.sizeToFit()
+            firstYearButton.frame.origin = CGPoint(x: yearLabelXCenter - Int(ceil(firstYearButton.bounds.width)), y: ySpacing)
+            firstYearButton.addTarget(self, action: #selector(yearButtonPressed(sender:)), for: .touchDown)
+            firstYearButton.addTarget(self, action: #selector(yearButtonReleased(sender:)), for: .touchUpInside)
+            firstYearButton.addTarget(self, action: #selector(yearButtonReleased(sender:)), for: .touchUpOutside)
+            
+            firstYearButton.layer.cornerRadius = 4
+            scrollView.addSubview(firstYearButton)
+            
+            var xSpacing = yearLabelXCenter + spacing
+            
+            //draw label between buttons
+            let toLabel = UILabel(frame: CGRect(x: xSpacing, y: ySpacing + Int(ceil(firstYearButton.bounds.height)), width: 100, height: 100))
+            toLabel.text = " To "
+            toLabel.sizeToFit()
+            toLabel.frame.origin = CGPoint(x: xSpacing, y: ySpacing + Int(ceil(firstYearButton.bounds.height - toLabel.bounds.height)))
+            scrollView.addSubview(toLabel)
+            
+            xSpacing += Int(ceil(toLabel.bounds.width)) + spacing
+            
+            //ending year button
+            endYearButton.backgroundColor = UIColor.lightGray
+            endYearButton.setTitle("  Ending Year  ", for: .normal)
+            endYearButton.setTitleColor(.black, for: .normal)
+            endYearButton.layer.borderWidth = 2
+            endYearButton.layer.borderColor = UIColor.black.cgColor
+            endYearButton.sizeToFit()
+            endYearButton.frame.origin = CGPoint(x: xSpacing, y: ySpacing)
+            endYearButton.addTarget(self, action: #selector(yearButtonPressed(sender:)), for: .touchDown)
+            endYearButton.addTarget(self, action: #selector(yearButtonReleased(sender:)), for: .touchUpInside)
+            endYearButton.addTarget(self, action: #selector(yearButtonReleased(sender:)), for: .touchUpOutside)
+            
+            endYearButton.layer.cornerRadius = 4
+            scrollView.addSubview(endYearButton)
+            scrollView.sizeToFit()
+            scrollView.contentSize = CGSize(width: screenWidth, height: CGFloat(ySpacing + 50))
         }
+
+        //View that greys out the rest of the screen (drawn on top) for picker view
+        greyView = UIView(frame: CGRect(x: 0, y:0, width: Int(screenWidth), height: Int(scrollView.contentSize.height) + Int(screenHeight)))
+        greyView.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        greyView.isOpaque = false
+        greyView.isHidden = true
+        greyView.tag = 334
+        scrollView.addSubview(greyView)
+        
+        //pickerView
+        yearPicker = UIPickerView(frame: CGRect(x: screenWidth/2, y: screenHeight/2, width: 0, height: 0))
+        yearPicker.sizeToFit()
+        yearPicker.delegate = self
+        yearPicker.isHidden = true //hide picker view, only want to see it when button is pressed
+        yearPicker.backgroundColor = UIColor.white
+        yearPicker.isOpaque = true
+        yearPicker.tag = 333
+        yearPicker.frame.origin = CGPoint(x: screenWidth/2 - yearPicker.bounds.width/2, y: screenHeight/2 - yearPicker.bounds.height/2)
+        greyView.addSubview(yearPicker)
+
+        scrollView.bringSubview(toFront: greyView)
+    }
+    
+    //MARk: Button "animation" changes so user can see it is a button
+    //when pressed down
+    @objc private func yearButtonPressed(sender: UIButton!){
+        sender.backgroundColor = UIColor.darkGray
+        sender.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        
+        //save which button was clicked
+        buttonClicked = sender
+        
+        //show picker view
+        greyView.isHidden = false
+        yearPicker.isHidden = false
+        
+    }
+    
+    //when button is released
+    @objc private func yearButtonReleased(sender: UIButton!){
+        sender.backgroundColor = UIColor.lightGray
+        sender.transform = CGAffineTransform(scaleX: 1, y: 1)
     }
     
     //MARK: Orientation Changes
@@ -107,20 +239,36 @@ class EditViewController: UIViewController, UIScrollViewDelegate , UIPickerViewD
         //remove old uiviews & clear the scrollview
         let subViews = scrollView.subviews
         for subview in subViews{
-            subview.removeFromSuperview()
+            
+            //Don't remove greyview screen or picker
+            if subview.tag < 330{
+                subview.removeFromSuperview()
+            }
+            
         }
         
-        var newOrientation = UIDevice.current.orientation
-        switch newOrientation{
-        case .landscapeLeft, .landscapeRight:
-            print("landscape")
-            drawLabelsAndSwitches(labels: pollenSources)
-        case .portrait, .portraitUpsideDown:
-            print("portrait")
-            drawLabelsAndSwitches(labels: pollenSources)
-        default:
-            print("other")
-        }
+        //redraw content
+        drawLabelsAndSwitches(labels: pollenSources, spacing: spaces)
+    }
+    
+    //MARK: UIPicker Required functions
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return years.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return years[row] as String
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //Get value chosen in picker here
+        buttonClicked.setTitle(years[row], for: .normal)
+        yearPicker.isHidden = true
+        greyView.isHidden = true
     }
 
     //MARK: User is Changing Values
@@ -139,20 +287,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate , UIPickerViewD
 //
 //        }
     }
-    
-    //MARK: UIPicker Required functions
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return years.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return years[row] as String
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -169,3 +304,4 @@ class EditViewController: UIViewController, UIScrollViewDelegate , UIPickerViewD
     */
 
 }
+
