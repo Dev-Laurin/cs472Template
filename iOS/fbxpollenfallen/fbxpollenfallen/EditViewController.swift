@@ -58,13 +58,17 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
         
         //Allowing the scrollview to scroll
         scrollView.isScrollEnabled = true
+        
+        //Upon start have picker hidden
+        yearPicker.isHidden = true
+        greyView.isHidden = true
     }
     
     //MARK: Draw to the Screen
     private func drawLabelsAndSwitches(labels: [String], spacing: Int){
-        var screensize = UIScreen.main.bounds
-        var screenWidth = UIScreen.main.bounds.width
-        var screenHeight = UIScreen.main.bounds.height
+        let screensize = UIScreen.main.bounds
+        let screenWidth = screensize.width
+        let screenHeight = screensize.height
         
         //Draw label
         let pollenSourceLabel =  UILabel(frame: CGRect(x: 0 , y: spacing, width: 0, height: 0))
@@ -91,13 +95,15 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             let longestWidth = maxWidth + spacing + SwitchWidth
  
             //get biggest usable width in view
-            let viewWidth = self.view.frame.size.width
+            let viewWidth = self.view.frame.size.width - CGFloat(spacing*2)
             
             //how many of the longest item can we use across the screen
-            let itemsAvailablePerViewWidth = Int(ceil(viewWidth))/longestWidth
+            var itemsAvailablePerViewWidth = Int(viewWidth)/longestWidth
 
             //Spacing between columns
-            let inBetweenSpacing = ((Int(ceil(viewWidth)) - (longestWidth * itemsAvailablePerViewWidth))/2) / itemsAvailablePerViewWidth
+            let inBetweenSpacing = (viewWidth - CGFloat((longestWidth * itemsAvailablePerViewWidth))) / (CGFloat(itemsAvailablePerViewWidth))
+            
+            print("between spacing: " + String(describing: inBetweenSpacing))
             
             //Draw the labels & switches
             let remainder = (pollenSources.count % itemsAvailablePerViewWidth)
@@ -127,7 +133,12 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
                         scrollView.addSubview(Switch)
                         
                         //Spacing between columns
-                        xSpacing+=spacing + longestWidth + inBetweenSpacing //Int(ceil(maxSize.width))
+                        if inBetweenSpacing > 0 {
+                            xSpacing+=spacing + longestWidth + Int(inBetweenSpacing)
+                        }
+                        else{
+                            xSpacing+=spacing + longestWidth
+                        }
                         index += 1
                     }
 
@@ -189,6 +200,15 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             scrollView.sizeToFit()
             scrollView.contentSize = CGSize(width: screenWidth, height: CGFloat(ySpacing + 50))
         }
+        
+        //picker view was up and is not hidden upon rotation -> hide it, re-draw, unhide
+        var greyViewWasHidden = true
+        if greyView.isHidden == false{
+            //not hidden, hide it for redraw
+            greyView.isHidden = true
+            greyViewWasHidden = false
+            yearPicker.isHidden = true
+        }
 
         //View that greys out the rest of the screen (drawn on top) for picker view
         greyView = UIView(frame: CGRect(x: 0, y:0, width: Int(screenWidth), height: Int(scrollView.contentSize.height) + Int(screenHeight)))
@@ -206,8 +226,14 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
         yearPicker.backgroundColor = UIColor.white
         yearPicker.isOpaque = true
         yearPicker.tag = 333
-        yearPicker.frame.origin = CGPoint(x: screenWidth/2 - yearPicker.bounds.width/2, y: screenHeight/2 - yearPicker.bounds.height/2)
+        //draw yearpicker halfway in screen (x), but over buttons (y)
+        yearPicker.frame.origin = CGPoint(x: screenWidth/2 - yearPicker.bounds.width/2, y: (CGFloat(ySpacing) + endYearButton.bounds.height) - yearPicker.bounds.height)
         greyView.addSubview(yearPicker)
+        
+        if !greyViewWasHidden {
+            greyView.isHidden = false
+            yearPicker.isHidden = false
+        }
 
         scrollView.bringSubview(toFront: greyView)
     }
