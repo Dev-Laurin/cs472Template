@@ -7,22 +7,21 @@
     <title>FBX Pollen Fallen</title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
   </head>
   <body>
     <div class="grid-container">
       <div class="grid-x grid-padding-x">
         <div class="large-12 cell">
-          <h1>Welcome to FBX Pollen Fallen</h1>
+          <h1>Pollen Fallen in Fairbanks, AK</h1>
         </div>
       </div>
 
       <div class="grid-x grid-padding-x">
         <div class="large-8 medium-8 cell">
-          <div class="callout">
-            <h4>We&rsquo;re stoked you want to learn about the pollen fallen in Fairbanks, Alaska!</h4><br/>
-            <p>As you can see, we&rsquo;re not quite up and running just yet.</p>
-            <p>We&rsquo;ve got the basics in place for this interface: you can select a year from a drop-down menu and select as many pollen sources as you would like with the checkboxes. In this area here, where all this text is currently sitting, there will be a graph of the amounts and types of pollens over time, which you will be able to toggle with the year and pollen source options.</p>
-            <p>Feel free to play around with the year and pollen selectors, just keep in mind that they won&rsquo;t make anything happen just yet.</p>
+          <div class="mycallout">
+            <svg width="600" height="500" viewBox="0 0 600 500" ></svg>
+            <script src="js/graph.js"></script>
           </div>
         </div>
         <div class="large-4 medium-4 cell">
@@ -30,7 +29,31 @@
             <div class="callout">
               <h5>Select Year</h5>
               <div class="small-12 cell">
-                <!--label>Select Box</label-->
+                <label>From</label>
+                <select>
+                  <option value="1999">1999</option>
+                  <option value="2000">2000</option>
+                  <option value="2001">2001</option>
+                  <option value="2002">2002</option>
+                  <option value="2003">2003</option>
+                  <option value="2004">2004</option>
+                  <option value="2005">2005</option>
+                  <option value="2006">2006</option>
+                  <option value="2007">2007</option>
+                  <option value="2008">2008</option>
+                  <option value="2009">2009</option>
+                  <option value="2010">2010</option>
+                  <option value="2011">2011</option>
+                  <option value="2012">2012</option>
+                  <option value="2013">2013</option>
+                  <option value="2014">2014</option>
+                  <option value="2015">2015</option>
+                  <option value="2016">2016</option>
+                  <option value="2017">2017</option>
+                </select>
+              </div>
+              <div class="small-12 cell">
+                <label>To</label>
                 <select>
                   <option value="1999">1999</option>
                   <option value="2000">2000</option>
@@ -58,55 +81,55 @@
               <h5>Select Pollen Source</h5>
               <div class="small-12 cell">
                 <input id="checkbox1" type="checkbox">
-                <label for="checkbox1">Pollen 1</label>
+                <label for="checkbox1">Alder</label>
               </div>
               <div class="small-12 cell">
                 <input id="checkbox2" type="checkbox">
-                <label for="checkbox2">Pollen 2</label>
+                <label for="checkbox2">Willow</label>
               </div>
               <div class="small-12 cell">
                 <input id="checkbox3" type="checkbox">
-                <label for="checkbox3">Pollen 3</label>
+                <label for="checkbox3">Poplar Aspen</label>
               </div>
               <div class="small-12 cell">
                 <input id="checkbox4" type="checkbox">
-                <label for="checkbox4">Pollen 4</label>
+                <label for="checkbox4">Birch</label>
               </div>
               <div class="small-12 cell">
                 <input id="checkbox5" type="checkbox">
-                <label for="checkbox5">Pollen 5</label>
+                <label for="checkbox5">Spruce</label>
               </div>
               <div class="small-12 cell">
                 <input id="checkbox6" type="checkbox">
-                <label for="checkbox6">Pollen 6</label>
+                <label for="checkbox6">Chokecherry</label>
               </div>
               <div class="small-12 cell">
                 <input id="checkbox7" type="checkbox">
-                <label for="checkbox7">Pollen 7</label>
+                <label for="checkbox7">Juniper</label>
               </div>
               <div class="small-12 cell">
                 <input id="checkbox8" type="checkbox">
-                <label for="checkbox8">Pollen 8</label>
+                <label for="checkbox8">Tamarack</label>
               </div>
               <div class="small-12 cell">
                 <input id="checkbox9" type="checkbox">
-                <label for="checkbox9">Pollen 9</label>
+                <label for="checkbox9">Heather</label>
               </div>
               <div class="small-12 cell">
                 <input id="checkbox10" type="checkbox">
-                <label for="checkbox10">Pollen 10</label>
+                <label for="checkbox10">Lamb's Quarter</label>
               </div>
               <div class="small-12 cell">
                 <input id="checkbox11" type="checkbox">
-                <label for="checkbox11">Pollen 11</label>
+                <label for="checkbox11">Other 1</label>
               </div>
               <div class="small-12 cell">
                 <input id="checkbox12" type="checkbox">
-                <label for="checkbox12">Pollen 12</label>
+                <label for="checkbox12">Bluebells</label>
               </div>
               <div class="small-12 cell">
                 <input id="checkbox13" type="checkbox">
-                <label for="checkbox13">Pollen 13</label>
+                <label for="checkbox13">Mold</label>
               </div>
             </div>
           </form>
