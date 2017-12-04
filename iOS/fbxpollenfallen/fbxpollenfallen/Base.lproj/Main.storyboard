@@ -65,7 +65,7 @@
                     <navigationItem key="navigationItem" title="FBXPollenFallen" id="Z2i-PZ-Ykt">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="XpL-Xz-jMl">
                             <connections>
-                                <segue destination="US1-V9-KG3" kind="show" id="FB4-FH-9CZ"/>
+                                <segue destination="neH-x7-qfr" kind="presentation" identifier="changeGraph" id="FB4-FH-9CZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -80,7 +80,7 @@
             </objects>
             <point key="canvasLocation" x="217" y="143"/>
         </scene>
-        <!--Edit View Controller-->
+        <!--Edit Graph-->
         <scene sceneID="0KG-Hd-uqu">
             <objects>
                 <viewController id="US1-V9-KG3" customClass="EditViewController" customModule="fbxpollenfallen" customModuleProvider="target" sceneMemberID="viewController">
@@ -101,14 +101,28 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vxU-Qh-xl3"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Edit Graph" id="oeo-Af-GEz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PNX-gu-Kku">
+                            <connections>
+                                <action selector="cancel:" destination="US1-V9-KG3" id="kte-4d-dHV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Kl4-fz-9Kg">
+                            <connections>
+                                <segue destination="TNo-js-040" kind="unwind" unwindAction="unwindToChartWithSender:" id="bq4-cH-qv5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="editView" destination="WTZ-2l-de4" id="y0Y-ou-IZW"/>
+                        <outlet property="saveButton" destination="Kl4-fz-9Kg" id="zoF-1k-NbL"/>
                         <outlet property="scrollView" destination="ufh-eH-rPW" id="hM5-tK-uzQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDO-6p-BqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TNo-js-040" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="947.67616191904051" y="141.59999999999999"/>
+            <point key="canvasLocation" x="1681" y="141"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="29g-qM-4wi">
@@ -127,6 +141,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4CC-sV-NOt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-498" y="143"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="i0V-eV-ghD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="neH-x7-qfr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QUP-he-4uH">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="US1-V9-KG3" kind="relationship" relationship="rootViewController" id="eXN-74-Ohe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wYu-Zl-B8x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="947.20000000000005" y="141.22938530734635"/>
         </scene>
     </scenes>
 </document>

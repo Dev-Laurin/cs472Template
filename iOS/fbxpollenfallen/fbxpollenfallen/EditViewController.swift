@@ -12,11 +12,21 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
 
     @IBOutlet var editView: UIView! //keep this, it crashes otherwise
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBAction func cancel(_ sender: UIBarButtonItem) { //if the cancel button is pushed, don't call the segue functions
+        dismiss(animated: true, completion: nil)
+    }
     
     //MARK: Variables
     var pollenSources = ["Birch","Weed", "Spruce","Mold", "Poplar Aspen","Grass", "Willow","Grass 2", "Alder","Other", "Other Tree","Other 2", "Other Tree 2"]
     var years = ["2017", "2016", "2015", "2014", "2013"]
     var spaces = 8
+    
+    //Segue Variables -- What a user changes in the edit view to be sent to last view
+    //Store which switches/pollen sources are chosen for the graph
+    var pollenSourceSwitches = [Bool]()
+    //Store the years chosen
+    var chosenYears = [String]()
     
     //Views
         //pickerView
@@ -53,6 +63,10 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
         
         //Setup "Notifications" or Observers
         setupNotification()
+        //Initial values
+        for _ in 0..<pollenSources.count{
+           pollenSourceSwitches.append(true)
+        }
         //Draw to the View
         drawLabelsAndSwitches(labels: pollenSources, spacing: spaces)
         
@@ -103,8 +117,6 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             //Spacing between columns
             let inBetweenSpacing = (viewWidth - CGFloat((longestWidth * itemsAvailablePerViewWidth))) / (CGFloat(itemsAvailablePerViewWidth))
             
-            print("between spacing: " + String(describing: inBetweenSpacing))
-            
             //Draw the labels & switches
             let remainder = (pollenSources.count % itemsAvailablePerViewWidth)
             var itemRows = (pollenSources.count / itemsAvailablePerViewWidth)
@@ -130,6 +142,9 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
                         
                         //draw corresponding switch
                         let Switch = UISwitch(frame: CGRect(x: (xSpacing  + longestWidth - SwitchWidth), y: ySpacing - (SwitchHeight/2), width: 0, height: 0))
+                        Switch.tag = index
+                        Switch.isOn = true //default on
+                        Switch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
                         scrollView.addSubview(Switch)
                         
                         //Spacing between columns
@@ -159,7 +174,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             
             //draw buttons that open up a picker view
             firstYearButton.backgroundColor = UIColor.lightGray
-            firstYearButton.setTitle("  First Year  ", for: .normal)
+            firstYearButton.setTitle("  2016  ", for: .normal)
             firstYearButton.setTitleColor(.black, for: .normal)
             firstYearButton.layer.borderWidth = 2 
             firstYearButton.layer.borderColor = UIColor.black.cgColor
@@ -185,7 +200,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             
             //ending year button
             endYearButton.backgroundColor = UIColor.lightGray
-            endYearButton.setTitle("  Ending Year  ", for: .normal)
+            endYearButton.setTitle("  2016  ", for: .normal)
             endYearButton.setTitleColor(.black, for: .normal)
             endYearButton.layer.borderWidth = 2
             endYearButton.layer.borderColor = UIColor.black.cgColor
@@ -298,20 +313,8 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
     }
 
     //MARK: User is Changing Values
-    func switchChanged(theSwitch: UISwitch){
-        let newValue = theSwitch.isOn
-//        if newValue {
-//            switch theSwitch.tag{
-//            case 1:
-//                //birch switch used
-//            case 2:
-//
-//            default:
-//            }
-//        }
-//        else{
-//
-//        }
+    @objc func switchChanged(theSwitch: UISwitch){
+        pollenSourceSwitches[theSwitch.tag] = theSwitch.isOn
     }
 
     override func didReceiveMemoryWarning() {
@@ -319,15 +322,31 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
         // Dispose of any resources that can be recreated.
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        super.prepare(for: segue, sender: sender)
+        guard let button = sender as? UIBarButtonItem, button === saveButton else{
+            return //save button was not pressed, cancel
+        }
+        
+        //save info to pass in a variable
+            //Make sure text of button is not nil (shouldn't be because it has default values)
+        if let text = firstYearButton.titleLabel?.text {
+            let trimmed = text.trimmingCharacters(in: .whitespaces)
+            chosenYears.append(trimmed)
+        }
+        if let text = endYearButton.titleLabel?.text {
+            let trimmed = text.trimmingCharacters(in: .whitespaces)
+            chosenYears.append(trimmed)
+        }
+        
+        //pollenSourceSwitches is already made
+        
     }
-    */
-
 }
 
