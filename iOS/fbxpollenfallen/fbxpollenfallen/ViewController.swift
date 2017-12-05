@@ -18,7 +18,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var lineChart: LineChartView!
     
     //For Charting
-    var pollenSources = 14
+    var pollenSources = 13
     var pollenSourceSwitches = [Bool]()
     var years = ["2015", "2015"]
     
@@ -72,7 +72,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         for _ in 0..<pollenSources {
             pollenSourceSwitches.append(true)
         }
-        
+
         //fake data
         year = [birchForTheYear, spruceForTheYear, poplarAspenForTheYear, willowForTheYear, alderForTheYear, otherTree1, otherTree2, weed, mold, grass, grass2, other1, other2]
         makeChart(x: year.count, y: year, labels: names, colors: color)
@@ -94,11 +94,13 @@ class ViewController: UIViewController, ChartViewDelegate {
     //called when user re-opens graph scene from edit screen due to segues
     func changeChart(x: Int, y: [[Int]], labels: [String], colors: [UIColor]){
         lineChart.clear()
+        
         //only add values to the chart that the user wants
         var yearArr = [[Int]]()
         var labelArr = [String]()
         var colorArr = [UIColor]()
         
+        print("Pollensourceswitches count: " + String(describing: pollenSourceSwitches))
         for i in 0..<pollenSourceSwitches.count{
             if(pollenSourceSwitches[i]){
                 //add to year
@@ -185,10 +187,46 @@ class ViewController: UIViewController, ChartViewDelegate {
             }
             years = sourceViewController.chosenYears
         }
+        
         changeChart(x: year.count, y: year, labels: names, colors: color);
     }
     
-    
+    //When transitioning to edit view, we want the edit view to display what parts of the graph are active
+    @IBAction override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender) //always call the super when overriding a function
+        
+        let destNC = segue.destination as! UINavigationController
+
+        if let nextViewController = destNC.topViewController as? EditViewController{
+            nextViewController.pollenSourceSwitches = pollenSourceSwitches
+            //change display of switches based on current graph data
+            var index = 0
+            print(pollenSourceSwitches)
+            for i in 0..<pollenSourceSwitches.count{
+                print("loop executing")
+                if i%2==0{
+                    //even is i/2
+                    nextViewController.pollenSourceSwitches[i] = pollenSourceSwitches[i/2]
+                }
+                else{
+                    //odd last +1
+                    if(index<7){
+                        index = 7
+                        nextViewController.pollenSourceSwitches[i] = pollenSourceSwitches[index]
+                        index+=1
+                    }
+                    else{
+                        nextViewController.pollenSourceSwitches[i] = pollenSourceSwitches[index]
+                        index+=1
+                    }
+                }
+            }
+        
+            //change what years display on the buttons
+            nextViewController.firstYearButton.setTitle(years[0], for: .normal)
+            nextViewController.endYearButton.setTitle(years[1], for: .normal)
+        }
+    }
 
 }
 

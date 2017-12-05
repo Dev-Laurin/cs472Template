@@ -25,6 +25,8 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
     //Segue Variables -- What a user changes in the edit view to be sent to last view
     //Store which switches/pollen sources are chosen for the graph
     var pollenSourceSwitches = [Bool]()
+    //Store switches in array for changing upon loading later (saving user preferences)
+    var allSwitches = [UISwitch]()
     //Store the years chosen
     var chosenYears = [String]()
     
@@ -64,9 +66,11 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
         //Setup "Notifications" or Observers
         setupNotification()
         //Initial values
-        for _ in 0..<pollenSources.count{
-           pollenSourceSwitches.append(true)
-        }
+//        for _ in 0..<pollenSources.count{
+//           pollenSourceSwitches.append(true)
+//        }
+        print("Button label text")
+        print(firstYearButton.titleLabel?.text)
         //Draw to the View
         drawLabelsAndSwitches(labels: pollenSources, spacing: spaces)
         
@@ -112,7 +116,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             let viewWidth = self.view.frame.size.width - CGFloat(spacing*2)
             
             //how many of the longest item can we use across the screen
-            var itemsAvailablePerViewWidth = Int(viewWidth)/longestWidth
+            let itemsAvailablePerViewWidth = Int(viewWidth)/longestWidth
 
             //Spacing between columns
             let inBetweenSpacing = (viewWidth - CGFloat((longestWidth * itemsAvailablePerViewWidth))) / (CGFloat(itemsAvailablePerViewWidth))
@@ -143,8 +147,10 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
                         //draw corresponding switch
                         let Switch = UISwitch(frame: CGRect(x: (xSpacing  + longestWidth - SwitchWidth), y: ySpacing - (SwitchHeight/2), width: 0, height: 0))
                         Switch.tag = index
-                        Switch.isOn = true //default on
+                        print("Index: " + String(index))
+                        Switch.isOn = pollenSourceSwitches[index]
                         Switch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+                        allSwitches.append(Switch)
                         scrollView.addSubview(Switch)
                         
                         //Spacing between columns
@@ -174,7 +180,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             
             //draw buttons that open up a picker view
             firstYearButton.backgroundColor = UIColor.lightGray
-            firstYearButton.setTitle("  2016  ", for: .normal)
+            //firstYearButton.setTitle(chosenYears[0], for: .normal)
             firstYearButton.setTitleColor(.black, for: .normal)
             firstYearButton.layer.borderWidth = 2 
             firstYearButton.layer.borderColor = UIColor.black.cgColor
@@ -200,7 +206,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             
             //ending year button
             endYearButton.backgroundColor = UIColor.lightGray
-            endYearButton.setTitle("  2016  ", for: .normal)
+          //  endYearButton.setTitle(chosenYears[1], for: .normal)
             endYearButton.setTitleColor(.black, for: .normal)
             endYearButton.layer.borderWidth = 2
             endYearButton.layer.borderColor = UIColor.black.cgColor
@@ -287,6 +293,9 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             }
             
         }
+        
+        //also clear switch array
+        allSwitches.removeAll()
         
         //redraw content
         drawLabelsAndSwitches(labels: pollenSources, spacing: spaces)
