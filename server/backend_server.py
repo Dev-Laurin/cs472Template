@@ -75,8 +75,10 @@ class PollenServer(BaseHTTPRequestHandler):
 		params = parse_qs(urlparse(self.path).query)
 		cursor = self.DBconnection()
 
-
+		# Pull pollen query
 		cursor.execute(self.pollenQuery())
+		
+		# Returns tuple of tuples
 		response = cursor.fetchall()
 
 		pollenList = []
