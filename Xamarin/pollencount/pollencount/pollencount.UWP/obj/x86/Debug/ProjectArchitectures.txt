@@ -1,0 +1,2 @@
+C:\Users\jason\source\repos\pollencount\pollencount\pollencount.UWP\pollencount.UWP.csproj;x86
+C:\Users\jason\source\repos\pollencount\pollencount\pollencount\pollencount.csproj;neutral
