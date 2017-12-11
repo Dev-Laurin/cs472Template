@@ -3,12 +3,11 @@
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse,parse_qs
-from bson import json_util
-from datetime import datetime
+
 from copy import deepcopy
 import json
 import pymysql.cursors
-from collections import deque
+
 
 class echoServer(BaseHTTPRequestHandler):
 
@@ -90,11 +89,11 @@ class echoServer(BaseHTTPRequestHandler):
 
 	# Easy to parse JSON, categorized by year objects. 
 	def easyJsonify(self, response):
-
+		#print(response)
 		# Store to JSON array.
 		polArray = []
 
-		yearHolder = response[0][0].year # Set starting year.
+		yearHolder = -1 # Set dummy starting year.
 
 		print(yearHolder, "starting year") 
 
@@ -110,17 +109,16 @@ class echoServer(BaseHTTPRequestHandler):
 			
 			# Adjust for when year changes. 
 			if (yearHolder != r[0].year):
-
 				# Assign and save/copy. 
+				yearHolder = r[0].year
+				print(yearHolder)
 				workingYear["Year"] = yearHolder
 				workingYear["Data"] = lists
-				polArray.append(deepcopy(workingYear))
 
 				# Switch to previous year.
-				yearHolder = r[0].year
+				polArray.append(deepcopy(workingYear))
 				# Clean list. 
 				lists = []
-				# workingYear["Year"] = r[0].year
 
 
 
@@ -143,12 +141,6 @@ class echoServer(BaseHTTPRequestHandler):
 				"Mold": r[13]
 
 			})
-
-
-		# Needed, for now, to catch final year. 
-		workingYear["Year"] = yearHolder
-		workingYear["Data"] = lists
-		polArray.append(deepcopy(workingYear))
 		
 		return json.dumps(polArray)
 
@@ -167,9 +159,9 @@ class echoServer(BaseHTTPRequestHandler):
 		response = cursor.fetchall()
 
 		self.send_response(200)
+		self.send_header("Content-Type",'application/json')
 		self.end_headers()
 		self.wfile.write(bytes(str(self.easyJsonify(response)),"utf8"))
-		# self.wfile.write(bytes(self.easyJsonify(response)))
 
 		self.closeDBconnection()
 
