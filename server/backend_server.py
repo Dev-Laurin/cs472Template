@@ -1,121 +1,192 @@
 #!/usr/bin/env python3
 
+
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse,parse_qs
 from bson import json_util
+from datetime import datetime
+from copy import deepcopy
 import json
 import pymysql.cursors
+from collections import deque
 
-class PollenServer(BaseHTTPRequestHandler):
-	
-	# Create DB connections, return cursor.
-	def DBconnection(self):
-		self.conn = pymysql.connect(
-			host="127.0.0.1",
-			port='3306',
-			user="sneezy",
-			passwd="sneezing",
-			db="pollen",
-			unix_socket="/var/run/mysqld/mysqld.sock"
-			)
-
-		return self.conn.cursor()
-
-	# Close the connection.
-	def closeDBconnection(self):
-		self.conn.close()
+class echoServer(BaseHTTPRequestHandler):
 
 
-	''' 
-	PollenQuery - Returns a string that pulls pollen data
+    # Create DB connections, return cursor.
+    def DBconnection(self):
+        self.conn = pymysql.connect(
+            host="127.0.0.1",
+            port='3306',
+            user="sneezy",
+            passwd="sneezing",
+            db="pollen",
+            unix_socket="/var/run/mysqld/mysqld.sock"
+            )
 
-	Change the query to acquire specific pollen data.
+        return self.conn.cursor()
 
-	MySQL PollenData table description below. 
-	
-	+--------------+--------------+------+-----+---------+----------------+
-	| Field        | Type         | Null | Key | Default | Extra          |
-	+--------------+--------------+------+-----+---------+----------------+
-	| id           | int(11)      | NO   | PRI | NULL    | auto_increment |
-	| date         | date         | NO   |     | NULL    |                |
-	| time         | varchar(10)  | YES  |     | NULL    |                |
-	| location     | varchar(10)  | NO   |     | NULL    |                |
-	| alder        | int(11)      | NO   |     | NULL    |                |
-	| willow       | int(11)      | NO   |     | NULL    |                |
-	| poplar_aspen | int(11)      | NO   |     | NULL    |                |
-	| birch        | int(11)      | NO   |     | NULL    |                |
-	| spruce       | int(11)      | NO   |     | NULL    |                |
-	| other1_tree  | int(11)      | NO   |     | NULL    |                |
-	| other2_tree  | int(11)      | NO   |     | NULL    |                |
-	| total_tree   | int(11)      | NO   |     | NULL    |                |
-	| grass        | int(11)      | NO   |     | NULL    |                |
-	| grass_2      | int(11)      | NO   |     | NULL    |                |
-	| total_grass  | int(11)      | NO   |     | NULL    |                |
-	| weed         | int(11)      | NO   |     | NULL    |                |
-	| other1       | int(11)      | NO   |     | NULL    |                |
-	| other2       | int(11)      | NO   |     | NULL    |                |
-	| total_pollen | int(11)      | NO   |     | NULL    |                |
-	| mold         | int(11)      | NO   |     | NULL    |                |
-	| comments     | varchar(400) | YES  |     | NULL    |                |
-	+--------------+--------------+------+-----+---------+----------------+
-	'''
-	def pollenQuery(self):
-		query = "SELECT date, alder, willow, \
-			poplar_aspen, birch, spruce, \
-			other1_tree, other2_tree, grass, grass_2, \
-			weed, other1, other2, mold FROM PollenData;"
+    # Close DB connection.
+    def closeDBconnection(self):
+        self.conn.close()
 
-		return query
+    # Pollen Query
+    # Adjust query as needed. You'll need to update jsonify() below
+    # to capture the correct items you're looking for. 
+    def pollenQuery(self):
+        query = "SELECT date, alder, willow, \
+            poplar_aspen, birch, spruce, \
+            other1_tree, other2_tree, grass, grass_2, \
+            weed, other1, other2, mold FROM PollenData;"
+
+        return query
+
+    def tableQuery(self):
+        query = "desc PollenData;"
+
+        return query
+
+    # On GET request, query the MySQL DB, format data into pollendata blocks, and return
+    # as a string.
 
 
-	# On GET request, query the MySQL DB, format data into pollendata blocks, and return
-	# as a string.
-	def do_GET(self):
+    # Regular jsonify function. Returns regular JSON data, non-separated. 
+    def jsonify(self, response):
+        
+        allPollenData = {}
 
-		params = parse_qs(urlparse(self.path).query)
-		cursor = self.DBconnection()
+        polArray = []
 
-		# Pull pollen query
-		cursor.execute(self.pollenQuery())
-		
-		# Returns tuple of tuples
-		response = cursor.fetchall()
+        counter = 0
+        for r in response:
 
-		pollenList = []
+            emptyDict = {
+                "Year": r[0].year,
+                "Data":{
 
-		for row in response:
-			#print(row)
-			#print(len(row))
-			for i in range(len(row)):
-				print(row[i])
+                    "Day": r[0].day,
+                    "Month": r[0].month,
+                    
+                    "Alder": r[1], 
+                    "Willow": r[2], 
+                    "Poplar Aspen": r[3], 
+                    "Birch":r[4],
+                    "Spruce": r[5], 
+                    "Other1 Tree": r[6], 
+                    "Other2 Tree": r[7], 
+                    "Grass": r[8], 
+                    "Grass2":r[9],
+                    "Weed": r[10], 
+                    "Other1": r[11], 
+                    "Other2": r[12],
+                    "Mold": r[13]
+                },
+            }
 
-		retStr = ''
+            polArray.append(emptyDict)
 
-#		retStr1 = json.dumps(response, default=json_util.default)
+        self.easyJsonify(response)
 
-		retStr1 = ''
-
-		for r in response:
-
-			str1 = ''
-			str1 += '('
-			for j in r:
-
-				str1 += str(j) + ' '
-
-			str1 += ')'
-			retStr += str1 + '\n'
+        return polArray
 
 
-		self.closeDBconnection()
+    # Easy to parse JSON, categorized by year objects. 
+    def easyJsonify(self, response):
 
-		self.send_response(200)
-		self.end_headers()
-		self.wfile.write(bytes(retStr,"utf8"))
+        # Store to JSON array.
+        polArray = []
+
+        yearHolder = response[0][0].year # Set starting year.
+
+        print(yearHolder, "starting year") 
+
+        workingYear = {
+            "Year": 0,
+            "Data": []
+        }
+
+
+        lists = []
+
+        for r in response:
+            
+            # Adjust for when year changes. 
+            if (yearHolder != r[0].year):
+                print(r[0].year, yearHolder)
+
+                # Assign and save/copy. 
+                workingYear["Year"] = yearHolder
+                workingYear["Data"] = lists
+                polArray.append(deepcopy(workingYear))
+
+                # Switch to previous year.
+                yearHolder = r[0].year
+                # Clean list. 
+                lists = []
+                # workingYear["Year"] = r[0].year
+
+
+
+            lists.append({
+
+                "Day": r[0].day,
+                "Month": r[0].month,
+                "Alder": r[1], 
+                "Willow": r[2], 
+                "Poplar Aspen": r[3], 
+                "Birch":r[4],
+                "Spruce": r[5], 
+                "Other1 Tree": r[6], 
+                "Other2 Tree": r[7], 
+                "Grass": r[8], 
+                "Grass2":r[9],
+                "Weed": r[10], 
+                "Other1": r[11], 
+                "Other2": r[12],
+                "Mold": r[13]
+
+            })
+
+
+
+
+
+            counter+=1
+                # allYears[str(yearHolder)] = (workingYear)
+
+        workingYear["Year"] = yearHolder
+        workingYear["Data"] = lists
+        polArray.append(deepcopy(workingYear))
+        print(counter)
+        
+        return json.dumps(polArray)
+
+
+    def do_GET(self):
+
+        # Use this for passing parameters. Functions for specific query still need to 
+        # dealt with. 
+        params = parse_qs(urlparse(self.path).query)
+
+
+        cursor = self.DBconnection()
+        cursor.execute(self.pollenQuery())
+        
+        # Retrieve ALL data.
+        response = cursor.fetchall()
+
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(bytes(str(self.easyJsonify(response)),"utf8"))
+        # self.wfile.write(bytes(self.easyJsonify(response)))
+
+        self.closeDBconnection()
+
+
 
 
 
 if __name__ == '__main__':
-	server_address = ('127.0.0.1',8080)
-	server = HTTPServer(server_address,PollenServer)
-	server.serve_forever()
+    server_address = ('127.0.0.1',8080)
+    server = HTTPServer(server_address,echoServer)
+    server.serve_forever()
