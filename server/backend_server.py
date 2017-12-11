@@ -89,16 +89,14 @@ class echoServer(BaseHTTPRequestHandler):
 
 	# Easy to parse JSON, categorized by year objects. 
 	def easyJsonify(self, response):
-		#print(response)
 		# Store to JSON array.
 		polArray = []
+		dummy_year = -1
 
-		yearHolder = -1 # Set dummy starting year.
-
-		print(yearHolder, "starting year") 
+		yearHolder = dummy_year # Set dummy starting year.
 
 		workingYear = {
-			"Year": 0,
+			"Year": -1,
 			"Data": []
 		}
 
@@ -106,24 +104,7 @@ class echoServer(BaseHTTPRequestHandler):
 		lists = []
 
 		for r in response:
-			
-			# Adjust for when year changes. 
-			if (yearHolder != r[0].year):
-				# Assign and save/copy. 
-				yearHolder = r[0].year
-				print(yearHolder)
-				workingYear["Year"] = yearHolder
-				workingYear["Data"] = lists
-
-				# Switch to previous year.
-				polArray.append(deepcopy(workingYear))
-				# Clean list. 
-				lists = []
-
-
-
 			lists.append({
-
 				"Day": r[0].day,
 				"Month": r[0].month,
 				"Alder": r[1], 
@@ -139,9 +120,17 @@ class echoServer(BaseHTTPRequestHandler):
 				"Other1": r[11], 
 				"Other2": r[12],
 				"Mold": r[13]
-
 			})
-		
+
+			# Adjust for when year changes. 
+			if yearHolder != r[0].year:
+				workingYear["Data"] = lists
+				yearHolder = r[0].year
+				workingYear["Year"] = yearHolder
+				polArray.append(deepcopy(workingYear))
+			 
+				lists = []
+
 		return json.dumps(polArray)
 
 
