@@ -93,7 +93,7 @@ class echoServer(BaseHTTPRequestHandler):
 		# Store to JSON array.
 		polArray = []
 
-		yearHolder = response[0][0].year # Set starting year.
+		yearHolder = -1 # Set dummy starting year.
 
 		print(yearHolder, "starting year") 
 
