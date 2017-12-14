@@ -1,54 +1,46 @@
-.axis--x path
-{
+.container {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
   display: none;
 }
-.line
-{
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-}
-svg
-{
-  max-height: 100%;
-  max-width: 100%;
-  margin: auto;/**/
+
+.container input:checked ~ .checkmark:after {
   display: block;
 }
-.mycallout {
-  position: relative;
-  margin: 0 0 1rem 0;
-  padding: 0rem;
-  border: 1px solid rgba(10, 10, 10, 0.25);
-  border-radius: 0;
-  background-color: white;
-  color: #0a0a0a; }
-.mycallout > :first-child {
-  margin-top: 0; }
-.mycallout > :last-child {
-  margin-bottom: 0; }
-.mycallout.primary {
-  background-color: #d7ecfa;
-  color: #0a0a0a; }
-.mycallout.secondary {
-  background-color: #eaeaea;
-  color: #0a0a0a; }
-.mycallout.success {
-  background-color: #e1faea;
-  color: #0a0a0a; }
-.mycallout.warning {
-  background-color: #fff3d9;
-  color: #0a0a0a; }
-.mycallout.alert {
-  background-color: #f7e4e1;
-  color: #0a0a0a; }
-.mycallout.small {
-  padding-top: 0.0rem;
-  padding-right: 0.0rem;
-  padding-bottom: 0.0rem;
-  padding-left: 0.0rem; }
-.mycallout.large {
-  padding-top: 0rem;
-  padding-right: 0rem;
-  padding-bottom: 0rem;
-  padding-left: 0rem; }
+
+.container .checkmark:after {
+  left: 9px;
+  top: 3px;
+  width: 7px;
+  height: 15px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+} 
