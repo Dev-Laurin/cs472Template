@@ -19,7 +19,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
     
     //MARK: Variables
     var pollenSources = ["Birch","Weed", "Spruce","Mold", "Poplar Aspen","Grass", "Willow","Grass 2", "Alder","Other", "Other Tree","Other 2", "Other Tree 2"]
-    var years = ["2017", "2016", "2015", "2014", "2013"]
+    var years = ["2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004"]
     var spaces = 8
     
     //Segue Variables -- What a user changes in the edit view to be sent to last view
@@ -65,12 +65,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
         
         //Setup "Notifications" or Observers
         setupNotification()
-        //Initial values
-//        for _ in 0..<pollenSources.count{
-//           pollenSourceSwitches.append(true)
-//        }
-        print("Button label text")
-        print(firstYearButton.titleLabel?.text)
+
         //Draw to the View
         drawLabelsAndSwitches(labels: pollenSources, spacing: spaces)
         
@@ -113,7 +108,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             let longestWidth = maxWidth + spacing + SwitchWidth
  
             //get biggest usable width in view
-            let viewWidth = self.view.frame.size.width - CGFloat(spacing*2)
+            let viewWidth = self.view.frame.size.width - CGFloat(spacing*4)
             
             //how many of the longest item can we use across the screen
             let itemsAvailablePerViewWidth = Int(viewWidth)/longestWidth
@@ -121,6 +116,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             //Spacing between columns
             let inBetweenSpacing = (viewWidth - CGFloat((longestWidth * itemsAvailablePerViewWidth))) / (CGFloat(itemsAvailablePerViewWidth))
             
+
             //Draw the labels & switches
             let remainder = (pollenSources.count % itemsAvailablePerViewWidth)
             var itemRows = (pollenSources.count / itemsAvailablePerViewWidth)
@@ -147,7 +143,6 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
                         //draw corresponding switch
                         let Switch = UISwitch(frame: CGRect(x: (xSpacing  + longestWidth - SwitchWidth), y: ySpacing - (SwitchHeight/2), width: 0, height: 0))
                         Switch.tag = index
-                        print("Index: " + String(index))
                         Switch.isOn = pollenSourceSwitches[index]
                         Switch.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
                         allSwitches.append(Switch)

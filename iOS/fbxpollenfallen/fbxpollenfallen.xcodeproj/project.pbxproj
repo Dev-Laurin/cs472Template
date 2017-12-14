@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		492EB6A21FD793D900600D9B /* pollenDataJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492EB6A11FD793D900600D9B /* pollenDataJSON.swift */; };
 		49B99FDC1FB63CFD0037D4FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B99FDB1FB63CFD0037D4FF /* AppDelegate.swift */; };
 		49B99FDE1FB63CFD0037D4FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B99FDD1FB63CFD0037D4FF /* ViewController.swift */; };
 		49B99FE11FB63CFD0037D4FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49B99FDF1FB63CFD0037D4FF /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		492EB6A11FD793D900600D9B /* pollenDataJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pollenDataJSON.swift; sourceTree = "<group>"; };
 		496003B1F9A15CD39B78C9C1 /* Pods_fbxpollenfallen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fbxpollenfallen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B99FD81FB63CFD0037D4FF /* fbxpollenfallen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fbxpollenfallen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B99FDB1FB63CFD0037D4FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				49B99FDB1FB63CFD0037D4FF /* AppDelegate.swift */,
 				49B99FDD1FB63CFD0037D4FF /* ViewController.swift */,
 				49B9A0071FC1F3970037D4FF /* EditViewController.swift */,
+				492EB6A11FD793D900600D9B /* pollenDataJSON.swift */,
 				49B99FDF1FB63CFD0037D4FF /* Main.storyboard */,
 				49B99FE21FB63CFD0037D4FF /* Assets.xcassets */,
 				49B99FE41FB63CFE0037D4FF /* LaunchScreen.storyboard */,
@@ -343,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49B99FDE1FB63CFD0037D4FF /* ViewController.swift in Sources */,
+				492EB6A21FD793D900600D9B /* pollenDataJSON.swift in Sources */,
 				49B99FDC1FB63CFD0037D4FF /* AppDelegate.swift in Sources */,
 				49B9A0081FC1F3970037D4FF /* EditViewController.swift in Sources */,
 			);
