@@ -1,77 +1,133 @@
-var svg = d3.select("svg"),
-    margin = {top: 20, right: 80, bottom: 30, left: 50},
-    width = svg.attr("width") - margin.left - margin.right,
-    height = svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var theToggles = document.querySelectorAll('.toggles');
+  //console.log(theToggles);
+  for(var i=0;i<theToggles.length;i++)
+  {
+    theToggles[i].addEventListener('change',toggleOptions);
+    //console.log(theToggles[i].id);
+  }
+  function toggleOptions()
+  {
+    console.log("CHANGE");
+  }
 
-var parseTime = d3.timeParse("%Y%m%d");
 
-var x = d3.scaleTime().range([0, width]),
-    y = d3.scaleLinear().range([height, 0]),
-    z = d3.scaleOrdinal(d3.schemeCategory10);
+Plotly.d3.json("pollen", function(data)
+{
+  var rawDataURL = 'pollen';//'https://raw.githubusercontent.com/plotly/datasets/master/2016-weather-data-seattle.csv';/*'https://fbxpollenfallen.com/pollen/';*/
+  var xField = 'Year';//'Date';
+  var yField = 'Data';//'Mean_TemperatureC';
 
-var line = d3.line()
-.curve(d3.curveBasis)
-.x(function(d) { return x(d.date); })
-.y(function(d) { return y(d.temperature); });
+  var pdata = data;
+  //console.log(data);
 
-d3.tsv("data.tsv", type, function(error, data) {
-  if (error) throw error;
+  var x = [];
+  var y = [];
 
-  var cities = data.columns.slice(1).map(function(id) {
-    return {
-      id: id,
-      values: data.map(function(d) {
-        return {date: d.date, temperature: d[id]};
-      })
+  for (let record=0;record<pdata.length;record++)
+  {
+    for (let day=0;day<pdata[record]['Data'].length;day++)
+    {
+      //console.log(data[record]['Year']);
+      for(let j=0;j<theToggles.length;j++)
+      {
+        switch(theToggles[j].id)
+        {
+          case 'alder':
+            x.push(pdata[record]['Data'][day]['Alder']);
+            y.push(pdata[record]['Year']);
+            /*line: {
+              color: '#039a03',
+              width: 2
+            };*/
+            break;
+          case 'birch':
+            break;
+          case 'grass1':
+            break;
+          case 'grass2':
+            break;
+          case 'mold':
+            break;
+          case 'othertree1':
+            break;
+          case 'othertree2':
+            break;
+          case 'other1':
+            break;
+          case 'other2':
+            break;
+          case 'poplaraspen':
+            break;
+          case 'spruce':
+            break;
+          case 'weed':
+            break;
+          case 'willow':
+            break;
+          default:
+            console.log("Not a pollen source.");
+        }
+      }
+    }
+  }
+
+  var selectorOptions = {
+    buttons: [{
+      step: 'month',
+      stepmode: 'backward',
+      count: 1,
+      label: '1m'
+    }, {
+      step: 'month',
+      stepmode: 'backward',
+      count: 6,
+      label: '6m'
+    }, {
+      step: 'year',
+      stepmode: 'backward',
+      count: 1,
+      label: '1y'
+    }, {
+      step: 'year',
+      stepmode: 'backward',
+      count: 3,
+      label: '3y'
+    }, {
+      step: 'all',
+    }],
+  };
+
+  Plotly.d3.csv(rawDataURL, function(err, rawData) {
+    if(err) throw err;
+
+    var data = prepData(rawData);
+    var layout = {
+      xaxis: {
+        rangeselector: selectorOptions,
+        rangeslider: {}
+      },
+      yaxis: {
+        fixedrange: true
+      }
     };
+
+    Plotly.plot('graph', data, layout);
   });
 
-  x.domain(d3.extent(data, function(d) { return d.date; }));
+  function prepData(rawData) {
+    var x = [];
+    var y = [];
 
-  y.domain([
-    d3.min(cities, function(c) { return d3.min(c.values, function(d) { return d.temperature; }); }),
-    d3.max(cities, function(c) { return d3.max(c.values, function(d) { return d.temperature; }); })
-  ]);
+    rawData.forEach(function(datum, i) {
 
-  z.domain(cities.map(function(c) { return c.id; }));
+      x.push(new Date(datum[xField]));
+      y.push(datum[yField]);
+    });
 
-  g.append("g")
-    .attr("class", "axis axis--x")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x));
-
-  g.append("g")
-    .attr("class", "axis axis--y")
-    .call(d3.axisLeft(y))
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 6)
-    .attr("dy", "0.71em")
-    .attr("fill", "#000")
-    .text("Temperature, ºF");
-
-  var city = g.selectAll(".city")
-  .data(cities)
-  .enter().append("g")
-  .attr("class", "city");
-
-  city.append("path")
-    .attr("class", "line")
-    .attr("d", function(d) { return line(d.values); })
-    .style("stroke", function(d) { return z(d.id); });
-
-  city.append("text")
-    .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
-    .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
-    .attr("x", 3)
-    .attr("dy", "0.35em")
-    .style("font", "10px sans-serif")
-    .text(function(d) { return d.id; });
+    return [{
+      mode: 'lines',
+      x: x,
+      y: y
+    }];
+  }
 });
-
-function type(d, _, columns) {
-  d.date = parseTime(d.date);
-  for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
-  return d;
-}

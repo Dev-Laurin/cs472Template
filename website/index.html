@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   </head>
   <body>
     <div class="grid-container">
@@ -18,124 +19,125 @@
       </div>
 
       <div class="grid-x grid-padding-x">
-        <div class="large-8 medium-8 cell">
-          <div class="mycallout">
-            <svg width="600" height="500" viewBox="0 0 600 500" ></svg>
-            <script src="js/graph.js"></script>
+        <div class="large-9 medium-9 cell">
+          <div class="callout" style="padding: 0;display: block;">
+            <div id="graph" style="padding: 0; margin: 0 -2em; min-width: 13.75em"></div>
           </div>
         </div>
-        <div class="large-4 medium-4 cell">
+        <div class="large-3 medium-3 cell" style="padding-left: 2em;">
           <form>
-            <div class="callout">
-              <h5>Select Year</h5>
-              <div class="small-12 cell">
-                <label>From</label>
-                <select>
-                  <option value="1999">1999</option>
-                  <option value="2000">2000</option>
-                  <option value="2001">2001</option>
-                  <option value="2002">2002</option>
-                  <option value="2003">2003</option>
-                  <option value="2004">2004</option>
-                  <option value="2005">2005</option>
-                  <option value="2006">2006</option>
-                  <option value="2007">2007</option>
-                  <option value="2008">2008</option>
-                  <option value="2009">2009</option>
-                  <option value="2010">2010</option>
-                  <option value="2011">2011</option>
-                  <option value="2012">2012</option>
-                  <option value="2013">2013</option>
-                  <option value="2014">2014</option>
-                  <option value="2015">2015</option>
-                  <option value="2016">2016</option>
-                  <option value="2017">2017</option>
-                </select>
-              </div>
-              <div class="small-12 cell">
-                <label>To</label>
-                <select>
-                  <option value="1999">1999</option>
-                  <option value="2000">2000</option>
-                  <option value="2001">2001</option>
-                  <option value="2002">2002</option>
-                  <option value="2003">2003</option>
-                  <option value="2004">2004</option>
-                  <option value="2005">2005</option>
-                  <option value="2006">2006</option>
-                  <option value="2007">2007</option>
-                  <option value="2008">2008</option>
-                  <option value="2009">2009</option>
-                  <option value="2010">2010</option>
-                  <option value="2011">2011</option>
-                  <option value="2012">2012</option>
-                  <option value="2013">2013</option>
-                  <option value="2014">2014</option>
-                  <option value="2015">2015</option>
-                  <option value="2016">2016</option>
-                  <option value="2017">2017</option>
-                </select>
-              </div>
-            </div>
-            <div class="callout">
+            <div class="callout" style="min-width: 13.75em;">
               <h5>Select Pollen Source</h5>
-              <div class="small-12 cell">
-                <input id="checkbox1" type="checkbox">
-                <label for="checkbox1">Alder</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="alder" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="alder" style="background-color: #039a03;">
+                  </span>
+                  <strong>Alder</strong>
+                </label>
               </div>
-              <div class="small-12 cell">
-                <input id="checkbox2" type="checkbox">
-                <label for="checkbox2">Willow</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="birch" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="birch" style="background-color: #226666;">
+                  </span>
+                  <strong>Birch</strong>
+                </label>
               </div>
-              <div class="small-12 cell">
-                <input id="checkbox3" type="checkbox">
-                <label for="checkbox3">Poplar Aspen</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="grass1" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="grass1" style="background-color: #0ba668;">
+                  </span>
+                  <strong>Grass 1</strong>
+                </label>
               </div>
-              <div class="small-12 cell">
-                <input id="checkbox4" type="checkbox">
-                <label for="checkbox4">Birch</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="grass2" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="grass2" style="background-color: #0a0eb4;">
+                  </span>
+                  <strong>Grass 2</strong>
+                </label>
               </div>
-              <div class="small-12 cell">
-                <input id="checkbox5" type="checkbox">
-                <label for="checkbox5">Spruce</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="mold" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="mold" style="background-color: #9a0358;">
+                  </span>
+                  <strong>Mold</strong>
+                </label>
               </div>
-              <div class="small-12 cell">
-                <input id="checkbox6" type="checkbox">
-                <label for="checkbox6">Chokecherry</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="othertree1" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="othertree1" style="background-color: #76276c;">
+                  </span>
+                  <strong>Other Tree 1</strong>
+                </label>
               </div>
-              <div class="small-12 cell">
-                <input id="checkbox7" type="checkbox">
-                <label for="checkbox7">Juniper</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="othertree2" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="othertree2" style="background-color: #aa3939;">
+                  </span>
+                  <strong>Other Tree 2</strong>
+                </label>
               </div>
-              <div class="small-12 cell">
-                <input id="checkbox8" type="checkbox">
-                <label for="checkbox8">Tamarack</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="other1" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="other1" style="background-color: #4c2d73;">
+                  </span>
+                  <strong>Other 1</strong>
+                </label>
               </div>
-              <div class="small-12 cell">
-                <input id="checkbox9" type="checkbox">
-                <label for="checkbox9">Heather</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="other2" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="other2" style="background-color: #2a4f6e;">
+                  </span>
+                  <strong>Other 2</strong>
+                </label>
               </div>
-              <div class="small-12 cell">
-                <input id="checkbox10" type="checkbox">
-                <label for="checkbox10">Lamb's Quarter</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="poplaraspen" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="poplaraspen" style="background-color: #c65c00;">
+                  </span>
+                  <strong>Poplar Aspen</strong>
+                </label>
               </div>
-              <div class="small-12 cell">
-                <input id="checkbox11" type="checkbox">
-                <label for="checkbox11">Other 1</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="spruce" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="spruce" style="background-color: #aa6c39;">
+                  </span>
+                  <strong>Spruce</strong>
+                </label>
               </div>
-              <div class="small-12 cell">
-                <input id="checkbox12" type="checkbox">
-                <label for="checkbox12">Bluebells</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="weed" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="weed" style="background-color: #c69400;">
+                  </span>
+                  <strong>Weed</strong>
+                </label>
               </div>
-              <div class="small-12 cell">
-                <input id="checkbox13" type="checkbox">
-                <label for="checkbox13">Mold</label>
+              <div class="small-12 cell hideshow">
+                <label class="container">
+                  <input id="willow" type="checkbox" class="toggles" checked>
+                  <span class="checkmark" for="willow" style="background-color: #727d15;">
+                  </span>
+                  <strong>Willow</strong>
+                </label>
               </div>
             </div>
           </form>
         </div>
       </div>
     </div>
+    <script src="js/graph.js"></script>
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
