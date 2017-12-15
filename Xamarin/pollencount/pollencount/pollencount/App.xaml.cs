@@ -12,6 +12,7 @@ namespace pollencount
             var LineData = new LineChart();
             var LDat = new TabbedPage();
             LDat.Children.Add(new LineCh { Title = "Fairbanks Pollen", BindingContext = LineData });
+            LDat.Children.Add(new Settings { Title = "Settings"});
             MainPage = LDat;
         }
 
@@ -28,6 +29,11 @@ namespace pollencount
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        public void SpruceTog()
+        {
+
         }
     }
 }
