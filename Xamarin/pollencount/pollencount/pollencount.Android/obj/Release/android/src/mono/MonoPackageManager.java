@@ -108,11 +108,13 @@ class MonoPackageManager_Resources {
 		/* We need to ensure that "pollencount.Android.dll" comes first in this list. */
 		"pollencount.Android.dll",
 		"FormsViewGroup.dll",
+		"Newtonsoft.Json.dll",
 		"OxyPlot.dll",
 		"OxyPlot.Xamarin.Android.dll",
 		"OxyPlot.Xamarin.Forms.dll",
 		"OxyPlot.Xamarin.Forms.Platform.Android.dll",
 		"pollencount.dll",
+		"RestSharp.dll",
 		"Xamarin.Android.Support.Animated.Vector.Drawable.dll",
 		"Xamarin.Android.Support.Annotations.dll",
 		"Xamarin.Android.Support.Compat.dll",

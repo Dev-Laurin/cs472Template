@@ -28,3 +28,5 @@ Xamarin.Forms.Platform
 Xamarin.Forms.Xaml
 System.Resources.ResourceManager
 System.Diagnostics.Tools
+Newtonsoft.Json
+RestSharp

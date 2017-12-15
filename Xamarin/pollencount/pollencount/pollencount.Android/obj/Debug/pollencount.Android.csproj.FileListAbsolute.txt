@@ -154,7 +154,6 @@ C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollen
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\bin\Debug\RestSharp.dll
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\bin\Debug\Newtonsoft.Json.xml
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\bin\Debug\pollencount.Android.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount\bin\Debug\pollencount.dll
 bin\Debug\pollencount.dll.mdb
 bin\Debug\Microsoft.CSharp.pdb
 bin\Debug\Mono.Android.pdb

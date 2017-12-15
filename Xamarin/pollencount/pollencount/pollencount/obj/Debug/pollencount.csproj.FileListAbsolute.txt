@@ -44,4 +44,3 @@ C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollen
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount\obj\Debug\pollencount.pdb
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount\bin\Debug\Newtonsoft.Json.dll
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount\bin\Debug\Newtonsoft.Json.xml
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount\obj\Debug\pollencount.Settings.xaml.g.cs
