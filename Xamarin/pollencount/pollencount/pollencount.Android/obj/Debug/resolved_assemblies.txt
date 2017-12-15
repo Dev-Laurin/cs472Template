@@ -10,7 +10,6 @@ C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollen
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\OxyPlot.Xamarin.Forms.dll
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\OxyPlot.Xamarin.Forms.Platform.Android.dll
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\pollencount.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\RestSharp.dll
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Core.dll
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.dll
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.IO.Compression.dll
@@ -70,18 +69,5 @@ C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollen
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Text.Encoding.Extensions.dll
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Diagnostics.Tools.dll
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.ComponentModel.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\netstandard.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Data.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Transactions.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\Mono.Data.Tds.dll
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\Mono.Security.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Diagnostics.StackTrace.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Globalization.Extensions.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.IO.Compression.FileSystem.dll
 C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.ComponentModel.Composition.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Runtime.InteropServices.RuntimeInformation.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Runtime.Serialization.Xml.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Security.Cryptography.Algorithms.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Security.SecureString.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Web.Services.dll
-C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Debug\android\assets\System.Xml.XPath.XDocument.dll

@@ -114,7 +114,6 @@ class MonoPackageManager_Resources {
 		"OxyPlot.Xamarin.Forms.dll",
 		"OxyPlot.Xamarin.Forms.Platform.Android.dll",
 		"pollencount.dll",
-		"RestSharp.dll",
 		"Xamarin.Android.Support.Animated.Vector.Drawable.dll",
 		"Xamarin.Android.Support.Annotations.dll",
 		"Xamarin.Android.Support.Compat.dll",

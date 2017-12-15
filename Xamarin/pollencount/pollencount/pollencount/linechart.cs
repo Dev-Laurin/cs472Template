@@ -111,9 +111,6 @@ namespace pollencount
                 var content = await response.Content.ReadAsStringAsync();
                 Items = JsonConvert.DeserializeObject<List<PollenData>>(content);
                 SetPollenSeries(); 
-            
-              
-                
             }
             
             return Items;
