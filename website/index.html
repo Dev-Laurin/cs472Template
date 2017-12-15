@@ -19,18 +19,18 @@
       </div>
 
       <div class="grid-x grid-padding-x">
-        <div class="large-8 medium-8 cell">
+        <div class="large-9 medium-9 cell">
           <div class="callout" style="padding: 0;display: block;">
-            <div id="graph" style="padding: 0; margin: 0 -2em;"></div>
+            <div id="graph" style="padding: 0; margin: 0 -2em; min-width: 13.75em"></div>
           </div>
         </div>
-        <div class="large-4 medium-4 cell">
+        <div class="large-3 medium-3 cell" style="padding-left: 2em;">
           <form>
-            <div class="callout">
+            <div class="callout" style="min-width: 13.75em;">
               <h5>Select Pollen Source</h5>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="alder" type="checkbox" checked>
+                  <input id="alder" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="alder" style="background-color: #039a03;">
                   </span>
                   <strong>Alder</strong>
@@ -38,7 +38,7 @@
               </div>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="birch" type="checkbox" checked>
+                  <input id="birch" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="birch" style="background-color: #226666;">
                   </span>
                   <strong>Birch</strong>
@@ -46,7 +46,7 @@
               </div>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="grass1" type="checkbox" checked>
+                  <input id="grass1" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="grass1" style="background-color: #0ba668;">
                   </span>
                   <strong>Grass 1</strong>
@@ -54,7 +54,7 @@
               </div>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="grass2" type="checkbox" checked>
+                  <input id="grass2" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="grass2" style="background-color: #0a0eb4;">
                   </span>
                   <strong>Grass 2</strong>
@@ -62,7 +62,7 @@
               </div>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="mold" type="checkbox" checked>
+                  <input id="mold" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="mold" style="background-color: #9a0358;">
                   </span>
                   <strong>Mold</strong>
@@ -70,7 +70,7 @@
               </div>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="othertree1" type="checkbox" checked>
+                  <input id="othertree1" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="othertree1" style="background-color: #76276c;">
                   </span>
                   <strong>Other Tree 1</strong>
@@ -78,7 +78,7 @@
               </div>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="othertree2" type="checkbox" checked>
+                  <input id="othertree2" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="othertree2" style="background-color: #aa3939;">
                   </span>
                   <strong>Other Tree 2</strong>
@@ -86,7 +86,7 @@
               </div>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="other1" type="checkbox" checked>
+                  <input id="other1" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="other1" style="background-color: #4c2d73;">
                   </span>
                   <strong>Other 1</strong>
@@ -94,7 +94,7 @@
               </div>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="other2" type="checkbox" checked>
+                  <input id="other2" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="other2" style="background-color: #2a4f6e;">
                   </span>
                   <strong>Other 2</strong>
@@ -102,7 +102,7 @@
               </div>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="poplaraspen" type="checkbox" checked>
+                  <input id="poplaraspen" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="poplaraspen" style="background-color: #c65c00;">
                   </span>
                   <strong>Poplar Aspen</strong>
@@ -110,7 +110,7 @@
               </div>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="spruce" type="checkbox" checked>
+                  <input id="spruce" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="spruce" style="background-color: #aa6c39;">
                   </span>
                   <strong>Spruce</strong>
@@ -118,7 +118,7 @@
               </div>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="weed" type="checkbox" checked>
+                  <input id="weed" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="weed" style="background-color: #c69400;">
                   </span>
                   <strong>Weed</strong>
@@ -126,7 +126,7 @@
               </div>
               <div class="small-12 cell hideshow">
                 <label class="container">
-                  <input id="willow" type="checkbox" checked>
+                  <input id="willow" type="checkbox" class="toggles" checked>
                   <span class="checkmark" for="willow" style="background-color: #727d15;">
                   </span>
                   <strong>Willow</strong>
