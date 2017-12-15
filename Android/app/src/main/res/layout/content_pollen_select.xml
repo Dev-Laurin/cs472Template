@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.cs472.cs472template.pollen_select"
+    tools:showIn="@layout/activity_pollen_select">
+
+    <Switch
+        android:id="@+id/switch_mold"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="267dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:checked="false"
+        android:text="@string/Mold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_other1_tree"
+        tools:checked="false" />
+
+    <Switch
+        android:id="@+id/switch_other2"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Other2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/switch_spruce"
+        app:layout_constraintTop_toBottomOf="@+id/switch_other1" />
+
+    <Switch
+        android:id="@+id/switch_other1"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Other1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/switch_birch"
+        app:layout_constraintTop_toBottomOf="@+id/switch_weed" />
+
+    <Switch
+        android:id="@+id/switch_weed"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Weed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/switch_willow"
+        app:layout_constraintTop_toBottomOf="@+id/switch_grass2" />
+
+    <Switch
+        android:id="@+id/switch_grass"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Grass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_spruce" />
+
+    <Switch
+        android:id="@+id/switch_grass2"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/Grass2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/switch_alder"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/switch_other2_tree"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Other2_tree"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/switch_grass"
+        app:layout_constraintTop_toBottomOf="@+id/switch_other2" />
+
+    <Switch
+        android:id="@+id/switch_other1_tree"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Other1_tree"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_grass" />
+
+    <Switch
+        android:id="@+id/switch_spruce"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Spruce"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_birch" />
+
+    <Switch
+        android:id="@+id/switch_birch"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Birch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_willow" />
+
+    <Switch
+        android:id="@+id/switch_poplar_aspen"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Poplar_Aspen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/switch_other1_tree"
+        app:layout_constraintTop_toBottomOf="@+id/switch_other2_tree" />
+
+    <Switch
+        android:id="@+id/switch_alder"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/Alder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/switch_willow"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Willow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_alder" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="41dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="184dp"
+        android:onClick="saveClick"
+        android:text="@string/Save_Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_poplar_aspen" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginTop="100dp"
+        android:ems="10"
+        android:hint="to"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_poplar_aspen"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="20" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="84dp"
+        android:ems="10"
+        android:hint="from"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editText3"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_other1_tree"
+        app:layout_constraintVertical_bias="0.116"
+        tools:text="20" />
+
+</android.support.constraint.ConstraintLayout>

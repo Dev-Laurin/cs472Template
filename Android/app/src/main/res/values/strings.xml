@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">CS472 Pollen Charts</string>
+
+    <string name="title_activity_pollen_select">Charts</string>
+    <string name="nav_to_pollen_year">nav_to_pollen_year</string>
+    <string name="Alder">Alder</string>
+    <string name="Willow">Willow</string>
+    <string name="Poplar_Aspen">Poplar Aspen</string>
+    <string name="Birch">Birch</string>
+    <string name="Spruce">Spruce</string>
+    <string name="Other1_tree">Other1 Tree</string>
+    <string name="Other2_tree">Other2 Tree</string>
+    <string name="Grass2">Grass2</string>
+    <string name="Grass">Grass</string>
+    <string name="Weed">Weed</string>
+    <string name="Other1">Other1</string>
+    <string name="Other2">Other2</string>
+    <string name="Mold">Mold</string>
+    <string name="Save_Button">Save</string>
+</resources>
