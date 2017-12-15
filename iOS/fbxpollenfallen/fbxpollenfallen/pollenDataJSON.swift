@@ -8,7 +8,7 @@
 
 import Foundation
 
-/* Example JSON from website
+/* Example JSON from website, only 1 day of data in the Data object however
  {
     'Year' = 2000,
     'Data' = {
@@ -46,8 +46,6 @@ struct Data : Codable {
     var Other1_Tree : Int
     var Other2_Tree : Int
     
-    
-    
     //Other pollen sources
     var Grass : Int
     var Grass2 : Int
@@ -57,12 +55,14 @@ struct Data : Codable {
     var Other2 : Int
     var Mold : Int
     
+    //Day & Month when data was recorded 
     var Day : Int
     var Month : Int
     
 }
 
-//structs are copied, classes are by reference 
+//structs are copied, classes are by reference
+//Our JSON from our Server, Top level
 struct pollenJSON : Codable {
     let Year : Int
     var Data : [Data]

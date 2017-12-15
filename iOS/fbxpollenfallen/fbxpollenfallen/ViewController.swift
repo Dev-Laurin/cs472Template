@@ -27,11 +27,7 @@ class ViewController: UIViewController, ChartViewDelegate {
     let names = ["Birch", "Spruce", "Poplar Aspen", "Willow", "Alder", "Other Tree", "Other Tree 2", "Weed", "Mold", "Grass", "Grass 2", "Other 1", "Other 2"]
     //swift has UIColor from 0.0-1.0, so I had to divide by 255 for RGB
     let color = [UIColor(displayP3Red: 34.0/255, green: 102.0/255, blue: 102.0/255, alpha: 1.0),UIColor(displayP3Red: 170.0/255, green: 108.0/255, blue: 57.0/255, alpha: 1.0),UIColor(displayP3Red: 198.0/255, green: 92.0/255, blue: 0.0, alpha: 1.0),UIColor(displayP3Red: 114.0/255, green: 125.0/255, blue: 21.0/255, alpha: 1.0), UIColor.green, UIColor(displayP3Red: 118.0/255, green: 39.0/255, blue: 108.0/255, alpha: 1.0), UIColor(displayP3Red: 170.0/255, green: 57.0/255, blue: 57.0/255, alpha: 1.0), UIColor(displayP3Red: 198.0/255, green: 148.0/255, blue: 0.0/255, alpha: 1.0), UIColor(displayP3Red: 154.0/255, green: 3.0/255, blue: 88.0/255, alpha: 1.0), UIColor(displayP3Red: 11.0/255, green: 166.0/255, blue: 104.0/255, alpha: 1.0), UIColor(displayP3Red: 10.0/255, green: 14.0/255, blue: 180.0/255, alpha: 1.0), UIColor(displayP3Red: 76.0/255, green: 45.0/255, blue: 115.0/255, alpha: 1.0),UIColor(displayP3Red: 42.0/255, green: 79.0/255, blue: 110.0/255, alpha: 1.0)]
-    
-    //Deinitializer for notification
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
+   
     
     //MARK: Notification
     func setupNotification(){
@@ -39,8 +35,14 @@ class ViewController: UIViewController, ChartViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
-    //Draw the y Axis Vertical label (not supported in storyboard)
+    //Deinitializer for notification
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+ 
+    //Draw the y Axis Vertical label
     var yAxislabel = UILabel()
+    
     func drawYAxisLabel(){
         //For label viewing purposes
         let screen = UIScreen.main.bounds
@@ -52,7 +54,6 @@ class ViewController: UIViewController, ChartViewDelegate {
         //Rotate the label -90 deg
         yAxislabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
         //Make the new boundaries for the label to be visible in the view
-        
         yAxislabel.frame = CGRect(x: yAxisView.bounds.width/8, y: yAxisView.bounds.height/2 - yAxislabel.frame.height/2, width: 20, height: yAxisView.bounds.height/2)
         yAxislabel.sizeToFit()
         
@@ -66,7 +67,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         //Setup "Notifications" or Observers
         setupNotification()
 
-        //Label Y Axis
+        //Draw Label Y Axis
         drawYAxisLabel()
         
         //Initialize the Chart
@@ -88,7 +89,9 @@ class ViewController: UIViewController, ChartViewDelegate {
         for i in 0..<years.count{
             yearsInNumbers.append(Int(years[i])!)
         }
-        getServerData(years: yearsInNumbers) //Get initial data from the server
+        
+        //Get initial data from the server
+        getServerData(years: yearsInNumbers)
 
         //have horizontal stack view w/ chart & y_axis label fill screen
         lineChartVerticalStackView.distribution = .fill
@@ -111,13 +114,16 @@ class ViewController: UIViewController, ChartViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+/* The Result enum, closure, and httpGet() are all inspired from:
+    https://medium.com/@sdrzn/networking-and-persistence-with-json-in-swift-4-c400ecab402d
+ */
     enum Result<Value>{
         case success(Value)
         case failure(Error)
     }
-    
-    
     var graphData = [pollenJSON]()
+    
     func getServerData(years: [Int]){
         
         var yearKeys = years
@@ -128,9 +134,7 @@ class ViewController: UIViewController, ChartViewDelegate {
             yearKeys.removeLast()
         }
         
-        print("YearKeys: ")
-        print(yearKeys)
-        
+        //closure
         httpGET(for : yearKeys){ (result) in
             switch result {
             case .success(let data):
@@ -150,9 +154,10 @@ class ViewController: UIViewController, ChartViewDelegate {
                         }
                     })
                 }
-                print(self.graphData)
+
                 //Data pulling was a success, graph the data
                 self.changeChart(x: self.graphData.count, y: self.graphData, labels: self.names, colors: self.color, yearsInNumbers: years);
+                
             case .failure(let error):
                 //Could not get data from network, tell user via graph
                 print("Failure to grab data. Disconnected from the network? : " + String(describing: error))
@@ -160,7 +165,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         }
     }
     
-    //An HTTP GET request, should be called when user wants a new graph
+    //An HTTP GET request to our server
     func httpGET(for givenYears: [Int], completion: ((Result<[pollenJSON]>) -> Void)?) {
         
         //Host url path
@@ -172,6 +177,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         //find the json data based on these values
         var itemArr = [URLQueryItem]()
         let givenYearsSorted = givenYears.sorted()
+        
         //Server takes a GET request with from: year= to: year=
         let item = URLQueryItem(name: "year", value: "\(givenYearsSorted[0])")
         itemArr.append(item)
@@ -181,13 +187,11 @@ class ViewController: UIViewController, ChartViewDelegate {
             let item2 = URLQueryItem(name: "year", value: "\(givenYearsSorted[1])")
             itemArr.append(item2)
         }
-
         
         urlComponents.queryItems = itemArr
         guard let url = urlComponents.url else {
             fatalError("Could not create URL from request")
         }
-        print(url)
 
         //the actual GET request
         var request = URLRequest(url: url)
@@ -202,14 +206,11 @@ class ViewController: UIViewController, ChartViewDelegate {
             DispatchQueue.main.async {
 
                 guard responseError == nil else{
-                    print("response Error")
                     completion?(.failure(responseError!))
                    return
                 }
 
-
                 guard let jsonData = responseData else {
-                    print("Data could not be saved.")
                     let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Data was not retrived"]) as Error
                     completion?(.failure(error))
                    return
@@ -218,11 +219,10 @@ class ViewController: UIViewController, ChartViewDelegate {
                 let decoder = JSONDecoder()
 
                 do {
-                    print("in do")
+                    //decode the JSON to our swift structs
                     let pollenData = try decoder.decode([pollenJSON].self, from:  jsonData)
                     completion?(.success(pollenData))
                 } catch {
-                    print("in catch")
                     completion?(.failure(error))
                 }
             }
@@ -237,13 +237,12 @@ class ViewController: UIViewController, ChartViewDelegate {
         lineChart.clear()
         
         //only add values to the chart that the user wants
-        
         var labelArr = [String]()
         var colorArr = [UIColor]()
 
         for i in 0..<pollenSourceSwitches.count{
             if(pollenSourceSwitches[i]){
-                //add to year
+                //only add the needed labels & colors
                 labelArr.append(labels[i])
                 colorArr.append(colors[i])
             }
@@ -253,6 +252,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         makeChart(x: y.count, y: y, labels: labelArr, colors: colorArr, yearsInNumbers: yearsInNumbers)
     }
     
+    //Draws the chart from the given data
     func makeChart(x: Int, y: [pollenJSON], labels: [String], colors: [UIColor], yearsInNumbers: [Int]){
         
         //get all years in between
@@ -264,8 +264,10 @@ class ViewController: UIViewController, ChartViewDelegate {
             }
         }
         
+        //We are graphing multiple years, graph the totals
         if yearsToGraph.count > 1 {
             
+            //Check to see if there is any data to graph (if all switches are off)
             var falseCount = 0
             for p in pollenSourceSwitches {
                 if p {
@@ -284,9 +286,11 @@ class ViewController: UIViewController, ChartViewDelegate {
             //graphing multiple years, total all the values we want together
             var xAxisMonths = [String]()
             let data = LineChartData()
+            //per year
             for i in 0..<yearsToGraph.count{
                 var yVal : [ChartDataEntry] = [ChartDataEntry]()
                 xAxisMonths = [String]()
+                //per day in year that data was taken
                 for j in 0..<y[i].Data.count{
                     xAxisMonths.append(String(y[i].Data[j].Month) + "/" + String(y[i].Data[j].Day))
                     
@@ -330,16 +334,21 @@ class ViewController: UIViewController, ChartViewDelegate {
                         yVal.append(ChartDataEntry(x: Double(j+1), y: Double(y[i].Data[j].Other2)))
                     }
                 }
+                
+                //make the year's data set
                 let yearDataSet = LineChartDataSet(values: yVal, label: String(yearsToGraph[i]))
                 yearDataSet.setColor(color[i])
                 yearDataSet.setCircleColor(color[i])
+                //add the year's data to our data
                 data.addDataSet(yearDataSet)
             }
             
+            //Give our xAxis labels & our graph the new data
             lineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisMonths)
             lineChart.xAxis.granularity = 1
             lineChart.data = data
         }
+        //Only graphing 1 year's data -> graph each pollen source
         else {
             //make the y values for each pollen source & store them to be added to the dataset later
             var pollenSourceDataSets = [[[ChartDataEntry]]]()
@@ -393,7 +402,7 @@ class ViewController: UIViewController, ChartViewDelegate {
                     
                 }
                 
-                //append to a dataset
+                //append to a dataset (totaling all the data for each pollen source for the year)
                 birchDataSet.append(birchVal)
                 spruceDataSet.append(spruceVal)
                 poplarAspenDataSet.append(poplarAspenVal)
@@ -440,6 +449,7 @@ class ViewController: UIViewController, ChartViewDelegate {
                 }
                 
             }
+            //make our new lineChart
             lineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: xAxisMonths)
             lineChart.xAxis.granularity = 1
             lineChart.data = data
@@ -487,6 +497,7 @@ class ViewController: UIViewController, ChartViewDelegate {
         for i in 0..<years.count{
             yearsInNumbers.append(Int(years[i])!)
         }
+        //Get new data for our graph & draw the new graph
         getServerData(years: yearsInNumbers)
     }
     
@@ -494,15 +505,15 @@ class ViewController: UIViewController, ChartViewDelegate {
     @IBAction override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender) //always call the super when overriding a function
         
+        //Our navigation controller is between this view controller and our next one
         let destNC = segue.destination as! UINavigationController
 
         if let nextViewController = destNC.topViewController as? EditViewController{
             nextViewController.pollenSourceSwitches = pollenSourceSwitches
+            
             //change display of switches based on current graph data
             var index = 0
-            print(pollenSourceSwitches)
             for i in 0..<pollenSourceSwitches.count{
-                print("loop executing")
                 if i%2==0{
                     //even is i/2
                     nextViewController.pollenSourceSwitches[i] = pollenSourceSwitches[i/2]

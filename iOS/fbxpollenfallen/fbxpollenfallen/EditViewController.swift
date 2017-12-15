@@ -43,20 +43,15 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
     //keep track of which button was picked
     var buttonClicked = UIButton()
     
-//    //for drawing
-//    var screensize: CGRect = UIScreen.main.bounds
-//    var screenWidth = UIScreen.main.bounds.width
-//    var screenHeight = UIScreen.main.bounds.height
-//
-    //Deinitializer
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     //MARK: Notification
     func setupNotification(){
         //Setup an Observer to know when device is rotated
         NotificationCenter.default.addObserver(self, selector: #selector(rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    //Deinitializer
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
   
     //MARK: ViewDidLoad()
@@ -113,7 +108,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             //how many of the longest item can we use across the screen
             let itemsAvailablePerViewWidth = Int(viewWidth)/longestWidth
 
-            //Spacing between columns
+            //Spacing between columns (how much spacing we can have)
             let inBetweenSpacing = (viewWidth - CGFloat((longestWidth * itemsAvailablePerViewWidth))) / (CGFloat(itemsAvailablePerViewWidth))
             
 
@@ -125,6 +120,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             }
             var index = 0
             ySpacing = SwitchHeight/2 + (2*spacing) + Int(ceil(pollenSourceLabel.bounds.height))
+            
             //Draw all rows
             for _ in 0..<itemRows {
                
@@ -175,7 +171,6 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             
             //draw buttons that open up a picker view
             firstYearButton.backgroundColor = UIColor.lightGray
-            //firstYearButton.setTitle(chosenYears[0], for: .normal)
             firstYearButton.setTitleColor(.black, for: .normal)
             firstYearButton.layer.borderWidth = 2 
             firstYearButton.layer.borderColor = UIColor.black.cgColor
@@ -185,7 +180,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             firstYearButton.addTarget(self, action: #selector(yearButtonReleased(sender:)), for: .touchUpInside)
             firstYearButton.addTarget(self, action: #selector(yearButtonReleased(sender:)), for: .touchUpOutside)
             
-            firstYearButton.layer.cornerRadius = 4
+            firstYearButton.layer.cornerRadius = 4 //have button rounded
             scrollView.addSubview(firstYearButton)
             
             var xSpacing = yearLabelXCenter + spacing
@@ -201,7 +196,6 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             
             //ending year button
             endYearButton.backgroundColor = UIColor.lightGray
-          //  endYearButton.setTitle(chosenYears[1], for: .normal)
             endYearButton.setTitleColor(.black, for: .normal)
             endYearButton.layer.borderWidth = 2
             endYearButton.layer.borderColor = UIColor.black.cgColor
@@ -214,6 +208,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
             endYearButton.layer.cornerRadius = 4
             scrollView.addSubview(endYearButton)
             scrollView.sizeToFit()
+            //have scroll view actually be able to scroll (must be bigger size than content)
             scrollView.contentSize = CGSize(width: screenWidth, height: CGFloat(ySpacing + 50))
         }
         
@@ -254,7 +249,7 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
         scrollView.bringSubview(toFront: greyView)
     }
     
-    //MARk: Button "animation" changes so user can see it is a button
+    //MARK: Button "animation" changes so user can see it is a button
     //when pressed down
     @objc private func yearButtonPressed(sender: UIButton!){
         sender.backgroundColor = UIColor.darkGray
@@ -327,8 +322,8 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
     }
 
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    //Preparing to go back to ViewController, update our variables which unwindToChart() will use. 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -350,7 +345,6 @@ class EditViewController: UIViewController, UIScrollViewDelegate, UIPickerViewDe
         }
         
         //pollenSourceSwitches is already made
-        
     }
 }
 
