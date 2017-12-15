@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.example.cs472.cs472template"
+        applicationId "com.example.cs472.Android"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
@@ -28,4 +28,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     // MPAndroidChart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    compile 'com.android.volley:volley:1.0.0'
+    compile 'org.apache.commons:commons-lang3:3.7'
 }

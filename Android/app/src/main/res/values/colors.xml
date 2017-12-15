@@ -3,6 +3,22 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="red">#FF2321</color>
-    <color name="blue">#11B32F</color>
+
+
+    <!--THANK YOU ADDELINE AND LAURIN!-->
+    <color name="other1_tree">#76276C</color>
+    <color name="other2_tree">#aa3939</color>
+    <color name="birch">#226666</color>
+    <color name="spruce">#aa6c39</color>
+    <color name="other1">#4c2d73</color>
+    <color name="poplar_aspen">#c65c00</color>
+    <color name="weed">#c69400</color>
+    <color name="grass2">#0a0eb4</color>
+    <color name="mold">#9a0358</color>
+    <color name="alder">#039a03</color>
+    <color name="grass">#0ba668</color>
+    <color name="willow">#727d15</color>
+    <color name="other2">#2a4f6e</color>
+
+
 </resources>
