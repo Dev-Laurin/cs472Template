@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.2",
+    "Newtonsoft.Json": "10.0.3",
     "OxyPlot.Xamarin.Forms": "1.0.0",
     "Xamarin.Forms": "2.5.0.91635"
   },

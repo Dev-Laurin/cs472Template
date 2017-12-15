@@ -1,32 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Paths>
-  <Jars>obj\Release\__library_projects__\Xamarin.Android.Support.Annotations\library_project_imports\support-annotations.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\FormsViewGroup\library_project_imports\formsviewgroup.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Animated.Vector.Drawable\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Annotations\library_project_imports\support-annotations.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Compat\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Core.UI\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Core.Utils\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Design\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Fragment\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Media.Compat\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Transition\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v4\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.AppCompat\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.CardView\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.MediaRouter\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.Palette\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.RecyclerView\library_project_imports\bin\classes.jar;C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Vector.Drawable\library_project_imports\bin\classes.jar</Jars>
+  <Jars>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\0\jl\formsviewgroup.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\10\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\11\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\12\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\13\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\14\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\15\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\16\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\17\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\18\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\19\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\20\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\21\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\22\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\23\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\8\jl\bin\classes.jar</Jar>
+    <Jar>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\9\jl\support-annotations.jar</Jar>
+  </Jars>
   <ResolvedResourceDirectories>
-    <ResolvedResourceDirectory>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\OxyPlot.Xamarin.Android\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\OxyPlot.Xamarin.Forms.Platform.Android\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Design\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Transition\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v4\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.AppCompat\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.CardView\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.MediaRouter\library_project_imports\res</ResolvedResourceDirectory>
-    <ResolvedResourceDirectory>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.RecyclerView\library_project_imports\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\2\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\4\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\13\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\16\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\17\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\18\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\19\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\20\jl\res</ResolvedResourceDirectory>
+    <ResolvedResourceDirectory>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\22\jl\res</ResolvedResourceDirectory>
   </ResolvedResourceDirectories>
   <ResolvedAssetDirectories>
-    <ResolvedAssetDirectory>obj\Release\__library_projects__\OxyPlot.Xamarin.Android\library_project_imports\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>obj\Release\__library_projects__\OxyPlot.Xamarin.Forms.Platform.Android\library_project_imports\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>obj\Release\__library_projects__\Xamarin.Android.Support.v4\library_project_imports\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Release\lp\2\jl\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Release\lp\4\jl\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\Release\lp\17\jl\assets</ResolvedAssetDirectory>
   </ResolvedAssetDirectories>
   <ResolvedEnvironmentFiles />
   <ResolvedResourceDirectoryStamps>
-    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\OxyPlot.Xamarin.Android.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\OxyPlot.Xamarin.Forms.Platform.Android.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Design.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.Transition.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v4.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.AppCompat.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.CardView.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.MediaRouter.stamp</ResolvedResourceDirectoryStamp>
-    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\pollencount\pollencount\pollencount.Android\obj\Release\__library_projects__\Xamarin.Android.Support.v7.RecyclerView.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\2.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\4.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\13.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\16.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\17.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\18.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\19.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\20.stamp</ResolvedResourceDirectoryStamp>
+    <ResolvedResourceDirectoryStamp>C:\Users\jason\source\repos\cs472Template\Xamarin\pollencount\pollencount\pollencount.Android\obj\Release\lp\22.stamp</ResolvedResourceDirectoryStamp>
   </ResolvedResourceDirectoryStamps>
 </Paths>
