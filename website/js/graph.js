@@ -4,11 +4,8 @@ for(var i=0;i<theToggles.length;i++)
 {
   theToggles[i].addEventListener('change',toggleOptions);
 }
-function toggleOptions()
-{
-  console.log("CHANGE");
-}
 
+var graph_lines = [];
 
 Plotly.d3.json("pollen.json", function(data)
 {
@@ -123,8 +120,8 @@ Plotly.d3.json("pollen.json", function(data)
         
         for(let j=0;j<theToggles.length;j++)
         {
-          switch(theToggles[j].id)
-              {
+         switch(theToggles[j].id)
+          {
             case 'alder':
               x00.push(date);
               y00.push(pdata[record]['Data'][day]['Alder']);
@@ -183,8 +180,8 @@ Plotly.d3.json("pollen.json", function(data)
         }
       }
     }
-
-    return [{
+    
+    var trace00 = {
       mode: 'lines',
       name: 'Alder',
       line: {
@@ -193,7 +190,8 @@ Plotly.d3.json("pollen.json", function(data)
       },
       x: x00,
       y: y00
-    },{
+    };
+    var trace01 =  {
       mode: 'lines',
       name: 'Birch',
       line: {
@@ -202,7 +200,8 @@ Plotly.d3.json("pollen.json", function(data)
       },
       x: x01,
       y: y01
-    },{
+    };
+    var trace02 = {
       mode: 'lines',
       name: 'Grass 1',
       line: {
@@ -211,16 +210,18 @@ Plotly.d3.json("pollen.json", function(data)
       },
       x: x02,
       y: y02
-    },{
+    };
+    var trace03 = {
       mode: 'lines',
       name: 'Grass 2',
       line: {
         color: '#0a0eb4',
         width: 1
       },
-      x: x03,
-      y: y03
-    },{
+        x: x03,
+        y: y03
+    };
+    var trace04 = {
       mode: 'lines',
       name: 'Mold',
       line: {
@@ -229,7 +230,8 @@ Plotly.d3.json("pollen.json", function(data)
       },
       x: x04,
       y: y04
-    },{
+    };
+    var trace05 = {
       mode: 'lines',
       name: 'Other Tree 1',
       line: {
@@ -238,7 +240,8 @@ Plotly.d3.json("pollen.json", function(data)
       },
       x: x05,
       y: y05
-    },{
+    };
+    var trace06 = {
       mode: 'lines',
       name: 'Other Tree 2',
       line: {
@@ -247,7 +250,8 @@ Plotly.d3.json("pollen.json", function(data)
       },
       x: x06,
       y: y06
-    },{
+    };
+    var trace07 = {
       mode: 'lines',
       name: 'Other 1',
       line: {
@@ -256,7 +260,8 @@ Plotly.d3.json("pollen.json", function(data)
       },
       x: x07,
       y: y07
-    },{
+    };
+    var trace08 = {
       mode: 'lines',
       name: 'Other 2',
       line: {
@@ -265,7 +270,8 @@ Plotly.d3.json("pollen.json", function(data)
       },
       x: x08,
       y: y08
-    },{
+    };
+    var trace09 = {
       mode: 'lines',
       name: 'Poplar Aspen',
       line: {
@@ -274,7 +280,8 @@ Plotly.d3.json("pollen.json", function(data)
       },
       x: x09,
       y: y09
-    },{
+    };
+    var trace10 = {
       mode: 'lines',
       name: 'Spruce',
       line: {
@@ -283,7 +290,8 @@ Plotly.d3.json("pollen.json", function(data)
       },
       x: x10,
       y: y10
-    },{
+    };
+    var trace11 = {
       mode: 'lines',
       name: 'Weed',
       line: {
@@ -292,7 +300,8 @@ Plotly.d3.json("pollen.json", function(data)
       },
       x: x11,
       y: y11
-    },{
+    };
+    var trace12 = {
       mode: 'lines',
       name: 'Willow',
       line: {
@@ -301,6 +310,110 @@ Plotly.d3.json("pollen.json", function(data)
       },
       x: x12,
       y: y12
-    }];
+    };
+    
+    graph_lines.push(trace00);
+    graph_lines[0].visible00 = true;
+    graph_lines.push(trace01);
+    graph_lines[1].visible01 = true;
+    graph_lines.push(trace02);
+    graph_lines[2].visible02 = true;
+    graph_lines.push(trace03);
+    graph_lines[3].visible03 = true;
+    graph_lines.push(trace04);
+    graph_lines[4].visible04 = true;
+    graph_lines.push(trace05);
+    graph_lines[5].visible05 = true;
+    graph_lines.push(trace06);
+    graph_lines[6].visible06 = true;
+    graph_lines.push(trace07);
+    graph_lines[7].visible07 = true;
+    graph_lines.push(trace08);
+    graph_lines[8].visible08 = true;
+    graph_lines.push(trace09);
+    graph_lines[9].visible09 = true;
+    graph_lines.push(trace10);
+    graph_lines[10].visible10 = true;
+    graph_lines.push(trace11);
+    graph_lines[11].visible11 = true;
+    graph_lines.push(trace12);
+    graph_lines[12].visible12 = true;
+
+    return graph_lines;
   }
 });
+
+function toggleOptions()
+{
+ switch(this.id)
+  {
+    case 'alder':
+      var visible = graph_lines[0].visible00;
+      graph_lines[0].visible00 = !graph_lines[0].visible00;
+      Plotly.restyle("graph", 'visible', !visible, [0]);
+      break;
+    case 'birch':
+      var visible = graph_lines[1].visible01;
+      graph_lines[1].visible01 = !graph_lines[1].visible01;
+      Plotly.restyle("graph", 'visible', !visible, [1]);
+      break;
+    case 'grass1':
+      var visible = graph_lines[2].visible02;
+      graph_lines[2].visible02 = !graph_lines[2].visible02;
+      Plotly.restyle("graph", 'visible', !visible, [2]);
+      break;
+    case 'grass2':
+      var visible = graph_lines[3].visible03;
+      graph_lines[3].visible03 = !graph_lines[3].visible03;
+      Plotly.restyle("graph", 'visible', !visible, [3]);
+      break;
+    case 'mold':
+      var visible = graph_lines[4].visible04;
+      graph_lines[4].visible04 = !graph_lines[4].visible04;
+      Plotly.restyle("graph", 'visible', !visible, [4]);
+      break;
+    case 'othertree1':
+      var visible = graph_lines[5].visible05;
+      graph_lines[5].visible05 = !graph_lines[5].visible05;
+      Plotly.restyle("graph", 'visible', !visible, [5]);
+      break;
+    case 'othertree2':
+      var visible = graph_lines[6].visible06;
+      graph_lines[6].visible06 = !graph_lines[6].visible06;
+      Plotly.restyle("graph", 'visible', !visible, [6]);
+      break;
+    case 'other1':
+      var visible = graph_lines[7].visible07;
+      graph_lines[7].visible07 = !graph_lines[7].visible07;
+      Plotly.restyle("graph", 'visible', !visible, [7]);
+      break;
+    case 'other2':
+      var visible = graph_lines[8].visible08;
+      graph_lines[8].visible08 = !graph_lines[8].visible08;
+      Plotly.restyle("graph", 'visible', !visible, [8]);
+      break;
+    case 'poplaraspen':
+      var visible = graph_lines[9].visible09;
+      graph_lines[9].visible09 = !graph_lines[9].visible09;
+      Plotly.restyle("graph", 'visible', !visible, [9]);
+      break;
+    case 'spruce':
+      var visible = graph_lines[10].visible10;
+      graph_lines[10].visible10 = !graph_lines[10].visible10;
+      Plotly.restyle("graph", 'visible', !visible, [10]);
+      break;
+    case 'weed':
+      var visible = graph_lines[11].visible11;
+      graph_lines[11].visible11 = !graph_lines[11].visible11;
+      Plotly.restyle("graph", 'visible', !visible, [11]);
+      break;
+    case 'willow':
+      var visible = graph_lines[12].visible12;
+      graph_lines[12].visible12 = !graph_lines[12].visible12;
+      Plotly.restyle("graph", 'visible', !visible, [12]);
+      break;
+    default:
+      console.log("Not a pollen source.");
+  }
+  //console.log("CHANGE");
+}
